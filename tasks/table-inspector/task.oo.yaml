@@ -1,0 +1,58 @@
+inputs_def:
+  - handle: data
+    json_schema:
+      type: array
+      items:
+        type: object
+    description: "Table data from table-reader"
+    nullable: false
+
+  - handle: inspect_level
+    json_schema:
+      type: string
+      enum: [basic, detailed, quality]
+    description: "Inspection depth level (default: basic)"
+    nullable: true
+    value: null
+
+outputs_def:
+  - handle: summary
+    description: "Overall summary statistics"
+    json_schema:
+      type: object
+      properties:
+        row_count:
+          type: integer
+        column_count:
+          type: integer
+        memory_usage:
+          type: string
+
+  - handle: columns
+    description: "Column-level statistics"
+    json_schema:
+      type: array
+      items:
+        type: object
+
+  - handle: quality
+    description: "Data quality information (only in quality mode)"
+    json_schema:
+      type: object
+
+  - handle: preview
+    description: "First 10 rows preview"
+    json_schema:
+      type: array
+      items:
+        type: object
+
+executor:
+  name: python
+  options:
+    entry: __init__.py
+    spawn: false
+
+title: "Table Inspector"
+icon: ":carbon:view:"
+description: "Quickly inspect table structure, statistics, and data quality. Shows column types, missing values, and sample data."

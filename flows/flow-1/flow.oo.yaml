@@ -1,0 +1,115 @@
+title: "Table Processing Demo"
+description: "Demonstration of table processing blocks - read, inspect, filter,
+  clean, transform, aggregate, and write data"
+nodes:
+  # 1. Read CSV/Excel file
+  - node_id: reader#1
+    task: self::table-reader
+    inputs_from:
+      - handle: file_path
+        value: "/oomol-driver/oomol-storage/input.csv"
+      - handle: format
+        value: null
+      - handle: sheet_name
+        value: null
+      - handle: sheet_index
+        value: null
+      - handle: header_row
+        value: null
+      - handle: encoding
+        value: null
+      - handle: skip_rows
+        value: null
+      - handle: max_rows
+        value: null
+
+  # 2. Inspect the data
+  - node_id: inspector#1
+    task: self::table-inspector
+    inputs_from:
+      - handle: data
+        from_node:
+          - node_id: reader#1
+            output_handle: data
+      - handle: inspect_level
+        value: "detailed"
+
+  # 3. Clean the data
+  - node_id: cleaner#1
+    task: self::table-cleaner
+    inputs_from:
+      - handle: data
+        from_node:
+          - node_id: reader#1
+            output_handle: data
+      - handle: operations
+        value:
+          - type: "dropNull"
+            columns:
+              []
+          - type: "dropDuplicates"
+
+  # 4. Transform the data
+  - node_id: transformer#1
+    task: self::table-transformer
+    inputs_from:
+      - handle: data
+        from_node:
+          - node_id: cleaner#1
+            output_handle: data
+      - handle: operations
+        value:
+          - type: "trim"
+            params:
+              columns:
+                []
+
+  # 5. Filter the data
+  - node_id: filter#1
+    task: self::table-filter
+    inputs_from:
+      - handle: data
+        from_node:
+          - node_id: transformer#1
+            output_handle: data
+      - handle: conditions
+        value: null
+      - handle: columns
+        value: null
+      - handle: limit
+        value: null
+      - handle: offset
+        value: null
+      - handle: sort_by
+        value: null
+
+  # 6. Write the result
+  - node_id: writer#1
+    task: self::table-writer
+    inputs_from:
+      - handle: data
+        from_node:
+          - node_id: filter#1
+            output_handle: data
+      - handle: output_path
+        value: "/oomol-driver/oomol-storage/output.xlsx"
+      - handle: format
+        value: null
+      - handle: sheet_name
+        value: "Processed Data"
+      - handle: include_header
+        value: null
+      - handle: encoding
+        value: null
+      - handle: append
+        value: null
+      - handle: formatting
+        value:
+          header_style:
+            bold: true
+            background_color: "#4472C4"
+            font_size: 12
+          auto_filter: true
+          freeze_pane:
+            row: 1
+            col: 0

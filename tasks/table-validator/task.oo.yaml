@@ -1,0 +1,88 @@
+inputs_def:
+  - handle: data
+    json_schema:
+      type: array
+      items:
+        type: object
+    description: "Table data to validate"
+    nullable: false
+
+  - handle: rules
+    json_schema:
+      type: array
+      items:
+        type: object
+        properties:
+          column:
+            type: string
+          type:
+            type: string
+            enum: [notNull, unique, range, pattern, enum, length, dataType, custom]
+          params:
+            type: object
+          severity:
+            type: string
+            enum: [error, warning]
+          message:
+            type: string
+    description: "Validation rules to apply"
+    nullable: false
+
+  - handle: stopOnError
+    json_schema:
+      type: boolean
+    description: "Whether to stop validation on first error"
+    value: false
+    nullable: true
+
+outputs_def:
+  - handle: valid
+    description: "Whether all validations passed"
+    json_schema:
+      type: boolean
+
+  - handle: errors
+    description: "List of validation errors"
+    json_schema:
+      type: array
+      items:
+        type: object
+        properties:
+          row:
+            type: integer
+          column:
+            type: string
+          rule:
+            type: string
+          value:
+            type: [string, number, boolean, "null"]
+          message:
+            type: string
+          severity:
+            type: string
+
+  - handle: summary
+    description: "Validation summary statistics"
+    json_schema:
+      type: object
+      properties:
+        totalRows:
+          type: integer
+        validRows:
+          type: integer
+        errorRows:
+          type: integer
+        warningRows:
+          type: integer
+        errorsByRule:
+          type: object
+
+executor:
+  name: python
+  options:
+    entry: __init__.py
+    spawn: false
+
+title: "Table Validator"
+icon: ":carbon:checkmark:"
+description: "Validate table data against defined rules including null checks, uniqueness, ranges, patterns, and custom validations."

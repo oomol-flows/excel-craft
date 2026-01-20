@@ -1,0 +1,75 @@
+inputs_def:
+  - handle: data
+    json_schema:
+      type: array
+      items:
+        type: object
+    description: "Table data to sample from"
+    nullable: false
+
+  - handle: method
+    json_schema:
+      type: string
+      enum: [random, stratified, systematic, head, tail]
+    description: "Sampling method"
+    nullable: false
+
+  - handle: size
+    json_schema:
+      type: number
+    description: "Sample size (count if >= 1, proportion if 0 < size < 1)"
+    nullable: false
+
+  - handle: params
+    json_schema:
+      type: object
+      properties:
+        stratifyColumn:
+          type: string
+        seed:
+          type: integer
+        replacement:
+          type: boolean
+    description: "Method-specific parameters"
+    value: null
+    nullable: true
+
+outputs_def:
+  - handle: sample
+    description: "Sampled data"
+    json_schema:
+      type: array
+      items:
+        type: object
+
+  - handle: indices
+    description: "Original data indices of sampled rows"
+    json_schema:
+      type: array
+      items:
+        type: integer
+
+  - handle: sampleSize
+    description: "Actual number of rows in sample"
+    json_schema:
+      type: integer
+
+  - handle: originalSize
+    description: "Original data size"
+    json_schema:
+      type: integer
+
+  - handle: method
+    description: "Sampling method used"
+    json_schema:
+      type: string
+
+executor:
+  name: python
+  options:
+    entry: __init__.py
+    spawn: false
+
+title: "Table Sampler"
+icon: ":carbon:filter-edit:"
+description: "Sample data using various methods: random, stratified, systematic, head, or tail sampling."

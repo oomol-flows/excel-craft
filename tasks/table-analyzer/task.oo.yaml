@@ -1,0 +1,75 @@
+inputs_def:
+  - handle: data
+    json_schema:
+      type: array
+      items:
+        type: object
+    description: "Table data to analyze"
+    nullable: false
+
+  - handle: analysisType
+    json_schema:
+      type: string
+      enum: [correlation, distribution, outliers, trend, summary]
+    description: "Type of statistical analysis to perform"
+    nullable: false
+
+  - handle: columns
+    json_schema:
+      type: array
+      items:
+        type: string
+    description: "Columns to analyze (empty for all numeric columns)"
+    value: null
+    nullable: true
+
+  - handle: params
+    json_schema:
+      type: object
+      properties:
+        method:
+          type: string
+        threshold:
+          type: number
+        timeColumn:
+          type: string
+        window:
+          type: integer
+        bins:
+          type: integer
+    description: "Analysis-specific parameters"
+    value: null
+    nullable: true
+
+outputs_def:
+  - handle: analysisType
+    description: "Type of analysis performed"
+    json_schema:
+      type: string
+
+  - handle: result
+    description: "Analysis results (structure varies by type)"
+    json_schema:
+      type: object
+
+  - handle: visualizationData
+    description: "Optional visualization data"
+    json_schema:
+      type: object
+      properties:
+        type:
+          type: string
+        data:
+          type: object
+        config:
+          type: object
+
+executor:
+  name: python
+  options:
+    entry: __init__.py
+    spawn: false
+
+title: "Table Analyzer"
+icon: ":carbon:chart-line:"
+description: "Perform advanced statistical analysis including correlation, distribution, outliers detection, and trend analysis."

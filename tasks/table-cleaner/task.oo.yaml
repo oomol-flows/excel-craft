@@ -1,0 +1,58 @@
+inputs_def:
+  - handle: data
+    json_schema:
+      type: array
+      items:
+        type: object
+    description: "Table data to clean"
+    nullable: false
+
+  - handle: operations
+    json_schema:
+      type: array
+      items:
+        type: object
+        properties:
+          type:
+            type: string
+            enum: [dropNull, fillNull, dropDuplicates, convertType, trim, replace, normalize]
+          columns:
+            type: array
+            items:
+              type: string
+          params:
+            type: object
+    description: "List of cleaning operations to apply"
+    nullable: false
+
+outputs_def:
+  - handle: data
+    description: "Cleaned table data"
+    json_schema:
+      type: array
+      items:
+        type: object
+
+  - handle: report
+    description: "Operation reports"
+    json_schema:
+      type: array
+      items:
+        type: object
+        properties:
+          operation:
+            type: string
+          affected:
+            type: integer
+          details:
+            type: string
+
+executor:
+  name: python
+  options:
+    entry: __init__.py
+    spawn: false
+
+title: "Table Cleaner"
+icon: ":carbon:clean:"
+description: "Clean table data by handling missing values, removing duplicates, type conversion, and text normalization."

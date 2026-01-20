@@ -1,0 +1,105 @@
+inputs_def:
+  - handle: data
+    json_schema:
+      type: array
+      items:
+        type: object
+    description: "Table data to filter"
+    nullable: false
+
+  - handle: conditions
+    json_schema:
+      type: array
+      items:
+        type: object
+        properties:
+          column:
+            type: string
+          operator:
+            type: string
+            enum: ["==", "!=", ">", "<", ">=", "<=", "contains", "startsWith", "endsWith", "in", "notIn", "isNull", "notNull", "between"]
+          value:
+            anyOf:
+              - type: string
+              - type: number
+              - type: boolean
+              - type: array
+              - type: "null"
+    description: "Filter conditions (AND logic)"
+    nullable: true
+    value: null
+
+  - handle: columns
+    json_schema:
+      type: array
+      items:
+        type: string
+    description: "Select specific columns (empty for all)"
+    nullable: true
+    value: null
+
+  - handle: limit
+    json_schema:
+      type: integer
+      minimum: 1
+    description: "Limit number of returned rows"
+    nullable: true
+    value: null
+
+  - handle: offset
+    json_schema:
+      type: integer
+      minimum: 0
+    description: "Skip first N rows"
+    nullable: true
+    value: null
+
+  - handle: sort_by
+    json_schema:
+      type: array
+      items:
+        type: object
+        properties:
+          column:
+            type: string
+          order:
+            type: string
+            enum: [asc, desc]
+    description: "Sort rules"
+    nullable: true
+    value: null
+
+outputs_def:
+  - handle: data
+    description: "Filtered table data"
+    json_schema:
+      type: array
+      items:
+        type: object
+
+  - handle: filtered_count
+    description: "Number of rows after filtering"
+    json_schema:
+      type: integer
+
+  - handle: total_count
+    description: "Original number of rows"
+    json_schema:
+      type: integer
+
+  - handle: columns
+    description: "Output column names"
+    json_schema:
+      type: array
+      items:
+        type: string
+
+executor:
+  name: python
+  options:
+    entry: __init__.py
+    spawn: false
+
+title: "Table Filter"
+icon: ":carbon:filter:"
+description: "Filter rows and columns based on conditions. Supports sorting, pagination, and multiple filter operators."

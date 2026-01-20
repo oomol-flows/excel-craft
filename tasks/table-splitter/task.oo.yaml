@@ -1,0 +1,76 @@
+inputs_def:
+  - handle: data
+    json_schema:
+      type: array
+      items:
+        type: object
+    description: "Table data to split"
+    nullable: false
+
+  - handle: method
+    json_schema:
+      type: string
+      enum: [ratio, condition, chunks, stratified]
+    description: "Splitting method"
+    nullable: false
+
+  - handle: params
+    json_schema:
+      type: object
+      properties:
+        ratios:
+          type: array
+          items:
+            type: number
+        names:
+          type: array
+          items:
+            type: string
+        shuffle:
+          type: boolean
+        seed:
+          type: integer
+        conditions:
+          type: array
+          items:
+            type: object
+        chunkSize:
+          type: integer
+        stratifyColumn:
+          type: string
+    description: "Splitting parameters"
+    nullable: false
+
+outputs_def:
+  - handle: splits
+    description: "Array of split datasets"
+    json_schema:
+      type: array
+      items:
+        type: object
+        properties:
+          name:
+            type: string
+          data:
+            type: array
+            items:
+              type: object
+          size:
+            type: integer
+          percentage:
+            type: number
+
+  - handle: method
+    description: "Splitting method used"
+    json_schema:
+      type: string
+
+executor:
+  name: python
+  options:
+    entry: __init__.py
+    spawn: false
+
+title: "Table Splitter"
+icon: ":carbon:split:"
+description: "Split table data by ratio, conditions, chunks, or stratified sampling. Useful for train/test splits."

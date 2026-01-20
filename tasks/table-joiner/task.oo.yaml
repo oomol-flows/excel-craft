@@ -1,0 +1,106 @@
+inputs_def:
+  - handle: leftData
+    json_schema:
+      type: array
+      items:
+        type: object
+    description: "Left table data"
+    nullable: false
+
+  - handle: rightData
+    json_schema:
+      type: array
+      items:
+        type: object
+    description: "Right table data"
+    nullable: false
+
+  - handle: joinType
+    json_schema:
+      type: string
+      enum: [inner, left, right, outer]
+    description: "Type of join operation"
+    nullable: false
+
+  - handle: leftKey
+    json_schema:
+      oneOf:
+        - type: string
+        - type: array
+          items:
+            type: string
+    description: "Key column(s) from left table"
+    nullable: false
+
+  - handle: rightKey
+    json_schema:
+      oneOf:
+        - type: string
+        - type: array
+          items:
+            type: string
+    description: "Key column(s) from right table"
+    nullable: false
+
+  - handle: suffixes
+    json_schema:
+      type: array
+      items:
+        type: string
+      minItems: 2
+      maxItems: 2
+    description: "Suffixes for duplicate columns [left_suffix, right_suffix]"
+    value: ["_x", "_y"]
+    nullable: true
+
+  - handle: dropDuplicates
+    json_schema:
+      type: boolean
+    description: "Whether to drop duplicate rows after join"
+    value: false
+    nullable: true
+
+outputs_def:
+  - handle: data
+    description: "Joined table data"
+    json_schema:
+      type: array
+      items:
+        type: object
+
+  - handle: matchedRows
+    description: "Number of successfully matched rows"
+    json_schema:
+      type: integer
+
+  - handle: leftUnmatched
+    description: "Number of unmatched rows from left table"
+    json_schema:
+      type: integer
+
+  - handle: rightUnmatched
+    description: "Number of unmatched rows from right table"
+    json_schema:
+      type: integer
+
+  - handle: joinType
+    description: "Type of join performed"
+    json_schema:
+      type: string
+
+  - handle: keyColumns
+    description: "Key columns used for joining"
+    json_schema:
+      type: array
+      items:
+        type: string
+
+executor:
+  name: python
+  options:
+    entry: __init__.py
+    spawn: false
+
+title: "Table Joiner"
+icon: ":carbon:join:"
+description: "Join two tables based on key columns. Supports inner, left, right, and outer joins similar to SQL."

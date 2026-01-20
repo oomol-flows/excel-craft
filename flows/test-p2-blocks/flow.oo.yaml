@@ -1,0 +1,43 @@
+title: "Test Time Series Block"
+description: "Simple test for time-series block"
+
+nodes:
+  # Read sample data
+  - node_id: reader#1
+    task: self::table-reader
+    inputs_from:
+      - handle: file_path
+        value: "/app/workspace/sample-data/sales_with_dates.csv"
+      - handle: format
+        value: null
+      - handle: sheet_name
+        value: null
+      - handle: sheet_index
+        value: null
+      - handle: header_row
+        value: null
+      - handle: encoding
+        value: null
+      - handle: skip_rows
+        value: null
+      - handle: max_rows
+        value: null
+
+  # Extract time features
+  - node_id: time_series#1
+    task: self::table-time-series
+    inputs_from:
+      - handle: data
+        from_node:
+          - node_id: reader#1
+            output_handle: data
+      - handle: time_column
+        value: "date"
+      - handle: operation
+        value: "extractFeatures"
+      - handle: params
+        value:
+          features:
+            - year
+            - month
+            - weekday

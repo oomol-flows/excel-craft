@@ -1,0 +1,109 @@
+inputs_def:
+  - handle: data
+    json_schema:
+      type: array
+      items:
+        type: object
+    description: "Table data to aggregate"
+    nullable: false
+
+  - handle: mode
+    json_schema:
+      type: string
+      enum: [groupBy, pivot]
+    description: "Aggregation mode"
+    nullable: false
+
+  - handle: group_by
+    json_schema:
+      type: array
+      items:
+        type: string
+    description: "Columns to group by (for groupBy mode)"
+    nullable: true
+    value: null
+
+  - handle: aggregations
+    json_schema:
+      type: array
+      items:
+        type: object
+        properties:
+          column:
+            type: string
+          function:
+            type: string
+            enum: [sum, avg, count, min, max, median, std, var, countUnique, first, last, list]
+          alias:
+            type: string
+    description: "Aggregation functions (for groupBy mode)"
+    nullable: true
+    value: null
+
+  - handle: pivot
+    json_schema:
+      type: object
+      properties:
+        index:
+          type: array
+          items:
+            type: string
+        columns:
+          type: string
+        values:
+          type: string
+        agg_func:
+          type: string
+        fill_value:
+          anyOf:
+            - type: number
+            - type: string
+            - type: "null"
+    description: "Pivot table configuration (for pivot mode)"
+    nullable: true
+    value: null
+
+outputs_def:
+  - handle: data
+    description: "Aggregated table data"
+    json_schema:
+      type: array
+      items:
+        type: object
+
+  - handle: mode
+    description: "Aggregation mode used"
+    json_schema:
+      type: string
+
+  - handle: shape
+    description: "Result shape"
+    json_schema:
+      type: object
+      properties:
+        rows:
+          type: integer
+        cols:
+          type: integer
+
+  - handle: group_count
+    description: "Number of groups (groupBy mode only)"
+    json_schema:
+      type: integer
+
+  - handle: pivot_columns
+    description: "Generated column names (pivot mode only)"
+    json_schema:
+      type: array
+      items:
+        type: string
+
+executor:
+  name: python
+  options:
+    entry: __init__.py
+    spawn: false
+
+title: "Table Aggregator"
+icon: ":carbon:chart-bar:"
+description: "Aggregate table data with GROUP BY operations or pivot tables. Supports multiple aggregation functions."

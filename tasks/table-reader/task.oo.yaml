@@ -1,0 +1,109 @@
+inputs_def:
+  - handle: file_path
+    json_schema:
+      type: string
+      ui:widget: file
+      ui:options:
+        filters:
+          - name: Excel Files
+            extensions: [xlsx, xls]
+          - name: CSV Files
+            extensions: [csv]
+          - name: TSV Files
+            extensions: [tsv]
+    description: "File path to read (Excel, CSV, or TSV)"
+    nullable: false
+
+  - handle: format
+    json_schema:
+      type: string
+      enum: [auto, csv, excel, tsv]
+    description: "File format (default: auto-detect)"
+    nullable: true
+    value: null
+
+  - handle: sheet_name
+    json_schema:
+      type: string
+    description: "Excel sheet name to read (default: first sheet)"
+    nullable: true
+    value: null
+
+  - handle: sheet_index
+    json_schema:
+      type: integer
+      minimum: 0
+    description: "Excel sheet index (0-based, default: 0)"
+    nullable: true
+    value: null
+
+  - handle: header_row
+    json_schema:
+      type: integer
+      minimum: 0
+    description: "Header row number (default: 0)"
+    nullable: true
+    value: null
+
+  - handle: encoding
+    json_schema:
+      type: string
+    description: "CSV encoding (default: utf-8)"
+    nullable: true
+    value: null
+
+  - handle: skip_rows
+    json_schema:
+      type: integer
+      minimum: 0
+    description: "Number of rows to skip from the beginning"
+    nullable: true
+    value: null
+
+  - handle: max_rows
+    json_schema:
+      type: integer
+      minimum: 1
+    description: "Maximum number of rows to read (for large files)"
+    nullable: true
+    value: null
+
+outputs_def:
+  - handle: data
+    description: "Table data as array of records"
+    json_schema:
+      type: array
+      items:
+        type: object
+
+  - handle: columns
+    description: "Column names"
+    json_schema:
+      type: array
+      items:
+        type: string
+
+  - handle: shape
+    description: "Table shape (rows and columns count)"
+    json_schema:
+      type: object
+      properties:
+        rows:
+          type: integer
+        cols:
+          type: integer
+
+  - handle: metadata
+    description: "File metadata"
+    json_schema:
+      type: object
+
+executor:
+  name: python
+  options:
+    entry: __init__.py
+    spawn: false
+
+title: "Table Reader"
+icon: ":carbon:document-import:"
+description: "Read Excel, CSV, or TSV files and return structured data. Supports auto-detection, sheet selection, and large file handling."

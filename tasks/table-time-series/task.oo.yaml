@@ -1,0 +1,103 @@
+inputs_def:
+  - handle: data
+    json_schema:
+      type: array
+      items:
+        type: object
+    description: "Input table data as array of records"
+    nullable: false
+
+  - handle: time_column
+    json_schema:
+      type: string
+    description: "Name of the time/date column"
+    nullable: false
+
+  - handle: operation
+    json_schema:
+      type: string
+      enum:
+        - resample
+        - rolling
+        - shift
+        - diff
+        - parseDate
+        - extractFeatures
+    description: "Time series operation to perform"
+    nullable: false
+
+  - handle: params
+    json_schema:
+      type: object
+      properties:
+        freq:
+          type: string
+          description: "Resample frequency (1D, 1H, 1M, 1W)"
+        aggFunc:
+          type: string
+          description: "Aggregation function for resample"
+        window:
+          type: integer
+          description: "Rolling window size"
+        minPeriods:
+          type: integer
+          description: "Minimum observations in window"
+        center:
+          type: boolean
+          description: "Center the rolling window"
+        periods:
+          type: integer
+          description: "Number of periods to shift"
+        format:
+          type: string
+          description: "Date format string"
+        features:
+          type: array
+          items:
+            type: string
+          description: "Time features to extract"
+    description: "Operation-specific parameters"
+    nullable: true
+    value: null
+
+outputs_def:
+  - handle: data
+    json_schema:
+      type: array
+      items:
+        type: object
+    description: "Processed table data"
+
+  - handle: operation
+    json_schema:
+      type: string
+    description: "Operation performed"
+
+  - handle: new_columns
+    json_schema:
+      type: array
+      items:
+        type: string
+    description: "New columns added"
+
+  - handle: time_range
+    json_schema:
+      type: object
+      properties:
+        start:
+          type: string
+        end:
+          type: string
+        periods:
+          type: integer
+    description: "Time range information"
+
+executor:
+  name: python
+  options:
+    entry: __init__.py
+    spawn: false
+
+title: "Time Series Processor"
+icon: ":carbon:time:"
+description: "Process time series data with resampling, rolling windows, shift, diff, date parsing and feature extraction operations"

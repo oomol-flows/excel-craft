@@ -1,0 +1,26 @@
+[project]
+name = "data-craft"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "shaun",email = "beingswu@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11,<3.13"
+dependencies = [
+    "pandas (>=2.3.3,<3.0.0)",
+    "openpyxl (>=3.1.5,<4.0.0)",
+    "chardet (>=5.2.0,<6.0.0)",
+    "xlsxwriter (>=3.2.9,<4.0.0)",
+    "scipy (>=1.17.0,<2.0.0)",
+    "scikit-learn (>=1.8.0,<2.0.0)"
+]
+
+[tool.poetry]
+package-mode = false
+packages = [{include = "data_craft", from = "src"}]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"

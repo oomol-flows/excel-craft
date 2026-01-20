@@ -1,0 +1,117 @@
+inputs_def:
+  - handle: data
+    json_schema:
+      type: array
+      items:
+        type: object
+    description: "Table data to write"
+    nullable: false
+
+  - handle: output_path
+    json_schema:
+      type: string
+      ui:widget: save
+      ui:options:
+        filters:
+          - name: Excel Files
+            extensions: [xlsx]
+          - name: CSV Files
+            extensions: [csv]
+          - name: TSV Files
+            extensions: [tsv]
+        excludeAll: true
+    description: "Output file path"
+    nullable: false
+
+  - handle: format
+    json_schema:
+      type: string
+      enum: [csv, excel, tsv]
+    description: "Output format (default: infer from file extension)"
+    nullable: true
+    value: null
+
+  - handle: sheet_name
+    json_schema:
+      type: string
+    description: "Excel sheet name (default: Sheet1)"
+    nullable: true
+    value: null
+
+  - handle: include_header
+    json_schema:
+      type: boolean
+    description: "Include column headers (default: true)"
+    nullable: true
+    value: null
+
+  - handle: encoding
+    json_schema:
+      type: string
+    description: "CSV encoding (default: utf-8)"
+    nullable: true
+    value: null
+
+  - handle: append
+    json_schema:
+      type: boolean
+    description: "Append to existing file (default: false)"
+    nullable: true
+    value: null
+
+  - handle: formatting
+    json_schema:
+      type: object
+      properties:
+        header_style:
+          type: object
+        column_widths:
+          type: object
+        auto_filter:
+          type: boolean
+        freeze_pane:
+          type: object
+    description: "Excel formatting options"
+    nullable: true
+    value: null
+
+outputs_def:
+  - handle: file_path
+    description: "Written file path"
+    json_schema:
+      type: string
+
+  - handle: rows_written
+    description: "Number of rows written"
+    json_schema:
+      type: integer
+
+  - handle: columns_written
+    description: "Number of columns written"
+    json_schema:
+      type: integer
+
+  - handle: file_size
+    description: "File size in bytes"
+    json_schema:
+      type: integer
+
+  - handle: success
+    description: "Whether write was successful"
+    json_schema:
+      type: boolean
+
+  - handle: format
+    description: "Format used for writing"
+    json_schema:
+      type: string
+
+executor:
+  name: python
+  options:
+    entry: __init__.py
+    spawn: false
+
+title: "Table Writer"
+icon: ":carbon:document-export:"
+description: "Write table data to Excel, CSV, or TSV files with optional formatting and styling options."

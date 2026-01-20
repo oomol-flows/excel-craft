@@ -1,0 +1,80 @@
+inputs_def:
+  - handle: data
+    json_schema:
+      type: array
+      items:
+        type: object
+    description: "Input table data as array of records"
+    nullable: false
+
+  - handle: formulas
+    json_schema:
+      type: array
+      items:
+        type: object
+        properties:
+          column:
+            type: string
+            description: "New column name"
+          expression:
+            type: string
+            description: "Formula expression"
+          type:
+            type: string
+            enum:
+              - formula
+              - custom
+            description: "Formula type"
+        required:
+          - column
+          - expression
+    description: "List of formulas to apply"
+    nullable: false
+
+  - handle: functions
+    json_schema:
+      type: object
+      additionalProperties:
+        type: string
+    description: "Custom function definitions (name: code)"
+    nullable: true
+    value: null
+
+outputs_def:
+  - handle: data
+    json_schema:
+      type: array
+      items:
+        type: object
+    description: "Table data with computed columns"
+
+  - handle: new_columns
+    json_schema:
+      type: array
+      items:
+        type: string
+    description: "Names of newly created columns"
+
+  - handle: errors
+    json_schema:
+      type: array
+      items:
+        type: object
+        properties:
+          row:
+            type: integer
+          column:
+            type: string
+          error:
+            type: string
+    description: "Formula evaluation errors (if any)"
+
+executor:
+  name: python
+  options:
+    entry: __init__.py
+    spawn: false
+
+title: "Formula Calculator"
+icon: ":carbon:formula:"
+description: "Apply Excel-like formulas to calculate new columns with support for math, logic, text, date and lookup functions"

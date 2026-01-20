@@ -1,0 +1,28 @@
+name,age,email,region,salary,department,hire_date
+John Doe,28,john.doe@example.com,North,55000,Engineering,2022-01-15
+Jane Smith,32,jane.smith@example.com,South,62000,Marketing,2021-06-20
+Bob Johnson,45,bob.j@example.com,East,78000,Engineering,2019-03-10
+Alice Williams,29,alice.w@example.com,West,51000,Sales,2022-08-05
+Charlie Brown,38,charlie.b@example.com,North,68000,Marketing,2020-11-12
+Diana Prince,41,diana.p@example.com,South,85000,Engineering,2018-04-22
+Eve Davis,26,eve.d@example.com,East,48000,Sales,2023-02-14
+Frank Miller,35,frank.m@example.com,West,72000,Engineering,2020-07-30
+Grace Lee,30,grace.l@example.com,North,59000,Marketing,2021-09-18
+Henry Wilson,44,henry.w@example.com,South,81000,Engineering,2019-12-05
+Ivy Chen,27,ivy.c@example.com,East,53000,Sales,2022-05-25
+Jack Taylor,39,jack.t@example.com,West,69000,Marketing,2020-10-08
+Kate Anderson,33,kate.a@example.com,North,64000,Engineering,2021-03-14
+Leo Martinez,42,leo.m@example.com,South,77000,Sales,2019-08-20
+Mary Garcia,31,mary.g@example.com,East,61000,Marketing,2021-11-30
+,25,,,45000,Sales,2023-01-10
+Oliver White,36,oliver.w@example.com,North,71000,Engineering,2020-05-17
+Paula Green,29,paula.g@example.com,South,56000,Marketing,2022-04-22
+Quinn Black,40,quinn.b@example.com,East,74000,Engineering,2019-09-15
+Rachel Blue,28,rachel.b@example.com,West,52000,Sales,2022-07-08
+Sam Red,34,sam.r@example.com,North,67000,Marketing,2021-01-25
+Tina Yellow,37,tina.y@example.com,South,73000,Engineering,2020-08-12
+Uma Purple,26,uma.p@example.com,East,49000,Sales,2023-03-05
+Victor Orange,43,victor.o@example.com,West,79000,Engineering,2019-06-28
+Wendy Pink,32,wendy.p@example.com,North,63000,Marketing,2021-10-14
+John Doe,28,john.doe@example.com,North,55000,Engineering,2022-01-15
+Xavier Gray,41,xavier.g@example.com,South,82000,Sales,2019-11-20

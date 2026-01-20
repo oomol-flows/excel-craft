@@ -1,0 +1,133 @@
+inputs_def:
+  - handle: file_path
+    json_schema:
+      type: string
+      ui:widget: file
+    description: "Path to the Excel file to format"
+    nullable: false
+
+  - handle: sheet_name
+    json_schema:
+      type: string
+    description: "Sheet name to format (default: first sheet)"
+    nullable: true
+    value: null
+
+  - handle: formatting
+    json_schema:
+      type: object
+      properties:
+        headerStyle:
+          type: object
+          properties:
+            bold:
+              type: boolean
+            italic:
+              type: boolean
+            fontSize:
+              type: integer
+            fontColor:
+              type: string
+            backgroundColor:
+              type: string
+            alignment:
+              type: string
+              enum:
+                - left
+                - center
+                - right
+            borderStyle:
+              type: string
+              enum:
+                - thin
+                - medium
+                - thick
+        columnWidths:
+          type: object
+          additionalProperties:
+            type: integer
+        rowHeights:
+          type: object
+          additionalProperties:
+            type: integer
+        autoFitColumns:
+          type: boolean
+        conditionalFormats:
+          type: array
+          items:
+            type: object
+            properties:
+              range:
+                type: string
+              rule:
+                type: string
+                enum:
+                  - cellValue
+                  - expression
+                  - colorScale
+                  - dataBar
+              condition:
+                type: string
+              style:
+                type: object
+              colors:
+                type: array
+                items:
+                  type: string
+        freeze:
+          type: object
+          properties:
+            row:
+              type: integer
+            col:
+              type: integer
+        dataValidation:
+          type: array
+          items:
+            type: object
+            properties:
+              range:
+                type: string
+              type:
+                type: string
+                enum:
+                  - list
+                  - whole
+                  - decimal
+                  - date
+              values:
+                type: array
+              min:
+                type: number
+              max:
+                type: number
+    description: "Formatting configuration"
+    nullable: false
+
+outputs_def:
+  - handle: file_path
+    json_schema:
+      type: string
+    description: "Path to the formatted file"
+
+  - handle: success
+    json_schema:
+      type: boolean
+    description: "Whether formatting was successful"
+
+  - handle: applied_formats
+    json_schema:
+      type: array
+      items:
+        type: string
+    description: "List of applied format types"
+
+executor:
+  name: python
+  options:
+    entry: __init__.py
+    spawn: false
+
+title: "Table Format Beautifier"
+icon: ":carbon:paint-brush:"
+description: "Apply Excel formatting including header styles, column widths, conditional formats, freeze panes and data validation"
