@@ -1,6 +1,0 @@
-title: "Table Processing Demo"
-description: "Demonstration of table processing blocks - read, inspect, filter,
-  clean, transform, aggregate, and write data"
-nodes:
-  # 1. Read CSV/Excel file
-  []
