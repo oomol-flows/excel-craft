@@ -1,15 +1,13 @@
 #region generated meta
 import typing
-
 class Inputs(typing.TypedDict):
-    data: list[dict[str, typing.Any]]
-    formulas: list[dict[str, typing.Any]]
-    functions: typing.NotRequired[dict[str, str] | None]
-
+    data: list[dict]
+    formulas: list[dict]
+    functions: dict | None
 class Outputs(typing.TypedDict):
-    data: list[dict[str, typing.Any]]
-    new_columns: list[str]
-    errors: list[dict[str, typing.Any]]
+    data: typing.NotRequired[list[dict]]
+    new_columns: typing.NotRequired[list[str]]
+    errors: typing.NotRequired[list[dict]]
 #endregion
 
 from oocana import Context

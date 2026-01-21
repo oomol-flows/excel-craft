@@ -1,20 +1,14 @@
 #region generated meta
 import typing
-
-class Operation(typing.TypedDict):
-    type: str
-    params: dict[str, typing.Any]
-
 class Inputs(typing.TypedDict):
-    data: list[dict[str, typing.Any]]
-    operations: list[Operation]
-
+    data: list[dict]
+    operations: list[dict]
 class Outputs(typing.TypedDict):
-    data: list[dict[str, typing.Any]]
-    new_columns: list[str]
-    dropped_columns: list[str]
-    renamed_columns: dict[str, str]
-    report: list[str]
+    data: typing.NotRequired[list[dict]]
+    new_columns: typing.NotRequired[list[str]]
+    dropped_columns: typing.NotRequired[list[str]]
+    renamed_columns: typing.NotRequired[dict]
+    report: typing.NotRequired[list[str]]
 #endregion
 
 from oocana import Context

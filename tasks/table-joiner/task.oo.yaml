@@ -110,6 +110,6 @@ executor:
     spawn: false
 
 title: "Table Joiner"
-icon: ":carbon:join:"
+icon: ":carbon:join-inner-alt:"
 description: "Join two tables based on key columns. Supports inner, left, right,
   and outer joins similar to SQL."

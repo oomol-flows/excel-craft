@@ -1,28 +1,16 @@
 #region generated meta
 import typing
-
-
-class SamplingParams(typing.TypedDict, total=False):
-    stratifyColumn: str
-    seed: int
-    replacement: bool
-
-
 class Inputs(typing.TypedDict):
     data: list[dict]
     method: typing.Literal["random", "stratified", "systematic", "head", "tail"]
     size: float
-    params: SamplingParams | None
-
-
+    params: dict | None
 class Outputs(typing.TypedDict):
-    sample: list[dict]
-    indices: list[int]
-    sampleSize: int
-    originalSize: int
-    method: str
-
-
+    sample: typing.NotRequired[list[dict]]
+    indices: typing.NotRequired[list[int]]
+    sampleSize: typing.NotRequired[int]
+    originalSize: typing.NotRequired[int]
+    method: typing.NotRequired[str]
 #endregion
 
 from oocana import Context

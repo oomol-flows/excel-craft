@@ -1,28 +1,17 @@
 #region generated meta
 import typing
-
-class Condition(typing.TypedDict):
-    column: str
-    operator: str
-    value: typing.NotRequired[typing.Any]
-
-class SortRule(typing.TypedDict):
-    column: str
-    order: str
-
 class Inputs(typing.TypedDict):
-    data: list[dict[str, typing.Any]]
-    conditions: typing.NotRequired[list[Condition]]
-    columns: typing.NotRequired[list[str]]
-    limit: typing.NotRequired[int]
-    offset: typing.NotRequired[int]
-    sort_by: typing.NotRequired[list[SortRule]]
-
+    data: list[dict]
+    conditions: list[dict] | None
+    columns: list[str] | None
+    limit: int | None
+    offset: int | None
+    sort_by: list[dict] | None
 class Outputs(typing.TypedDict):
-    data: list[dict[str, typing.Any]]
-    filtered_count: int
-    total_count: int
-    columns: list[str]
+    data: typing.NotRequired[list[dict]]
+    filtered_count: typing.NotRequired[int]
+    total_count: typing.NotRequired[int]
+    columns: typing.NotRequired[list[str]]
 #endregion
 
 from oocana import Context

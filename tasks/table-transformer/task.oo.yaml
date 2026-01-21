@@ -15,7 +15,14 @@ inputs_def:
         properties:
           type:
             type: string
-            enum: [addColumn, renameColumn, dropColumn, computeColumn, split, merge, cast]
+            enum:
+              - addColumn
+              - renameColumn
+              - dropColumn
+              - computeColumn
+              - split
+              - merge
+              - cast
           params:
             type: object
     description: "List of transformation operations"
@@ -62,5 +69,6 @@ executor:
     spawn: false
 
 title: "Table Transformer"
-icon: ":carbon:transform:"
-description: "Transform table data with operations like adding computed columns, renaming, splitting/merging columns, and type casting."
+icon: ":carbon:transform-binary:"
+description: "Transform table data with operations like adding computed columns,
+  renaming, splitting/merging columns, and type casting."

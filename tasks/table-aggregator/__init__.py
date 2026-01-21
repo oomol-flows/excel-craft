@@ -1,29 +1,15 @@
 #region generated meta
 import typing
-
-class Aggregation(typing.TypedDict):
-    column: str
-    function: str
-    alias: typing.NotRequired[str]
-
-class PivotConfig(typing.TypedDict):
-    index: list[str]
-    columns: str
-    values: str
-    agg_func: str
-    fill_value: typing.NotRequired[typing.Any]
-
 class Inputs(typing.TypedDict):
-    data: list[dict[str, typing.Any]]
-    mode: str
-    group_by: typing.NotRequired[list[str]]
-    aggregations: typing.NotRequired[list[Aggregation]]
-    pivot: typing.NotRequired[PivotConfig]
-
+    data: list[dict]
+    mode: typing.Literal["groupBy", "pivot"]
+    group_by: list[str] | None
+    aggregations: list[dict] | None
+    pivot: dict | None
 class Outputs(typing.TypedDict):
-    data: list[dict[str, typing.Any]]
-    mode: str
-    shape: dict[str, int]
+    data: typing.NotRequired[list[dict]]
+    mode: typing.NotRequired[str]
+    shape: typing.NotRequired[dict]
     group_count: typing.NotRequired[int]
     pivot_columns: typing.NotRequired[list[str]]
 #endregion

@@ -77,4 +77,5 @@ executor:
 
 title: "Formula Calculator"
 icon: ":carbon:formula:"
-description: "Apply Excel-like formulas to calculate new columns with support for math, logic, text, date and lookup functions"
+description: "Apply Excel-like formulas to calculate new columns with support
+  for math, logic, text, date and lookup functions"

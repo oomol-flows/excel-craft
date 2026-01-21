@@ -1,44 +1,13 @@
 #region generated meta
 import typing
-
-
-class Rule(typing.TypedDict, total=False):
-    column: str
-    type: typing.Literal["notNull", "unique", "range", "pattern", "enum", "length", "dataType", "custom"]
-    params: dict
-    severity: typing.Literal["error", "warning"]
-    message: str
-
-
 class Inputs(typing.TypedDict):
     data: list[dict]
-    rules: list[Rule]
+    rules: list[dict]
     stopOnError: bool | None
-
-
-class ValidationError(typing.TypedDict):
-    row: int
-    column: str
-    rule: str
-    value: typing.Any
-    message: str
-    severity: str
-
-
-class ValidationSummary(typing.TypedDict):
-    totalRows: int
-    validRows: int
-    errorRows: int
-    warningRows: int
-    errorsByRule: dict[str, int]
-
-
 class Outputs(typing.TypedDict):
-    valid: bool
-    errors: list[ValidationError]
-    summary: ValidationSummary
-
-
+    valid: typing.NotRequired[bool]
+    errors: typing.NotRequired[list[dict]]
+    summary: typing.NotRequired[dict]
 #endregion
 
 from oocana import Context

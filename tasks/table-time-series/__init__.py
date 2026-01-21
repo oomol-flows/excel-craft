@@ -1,17 +1,15 @@
 #region generated meta
 import typing
-
 class Inputs(typing.TypedDict):
-    data: list[dict[str, typing.Any]]
+    data: list[dict]
     time_column: str
-    operation: str
-    params: typing.NotRequired[dict[str, typing.Any] | None]
-
+    operation: typing.Literal["resample", "rolling", "shift", "diff", "parseDate", "extractFeatures"]
+    params: dict | None
 class Outputs(typing.TypedDict):
-    data: list[dict[str, typing.Any]]
-    operation: str
-    new_columns: list[str]
-    time_range: dict[str, typing.Any]
+    data: typing.NotRequired[list[dict]]
+    operation: typing.NotRequired[str]
+    new_columns: typing.NotRequired[list[str]]
+    time_range: typing.NotRequired[dict]
 #endregion
 
 from oocana import Context

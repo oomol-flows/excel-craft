@@ -1,15 +1,13 @@
 #region generated meta
 import typing
-
 class Inputs(typing.TypedDict):
-    data: list[dict[str, typing.Any]]
-    inspect_level: typing.NotRequired[str]
-
+    data: list[dict]
+    inspect_level: typing.Literal["basic", "detailed", "quality"] | None
 class Outputs(typing.TypedDict):
-    summary: dict[str, typing.Any]
-    columns: list[dict[str, typing.Any]]
-    quality: dict[str, typing.Any]
-    preview: list[dict[str, typing.Any]]
+    summary: typing.NotRequired[dict]
+    columns: typing.NotRequired[list[dict]]
+    quality: typing.NotRequired[dict]
+    preview: typing.NotRequired[list[dict]]
 #endregion
 
 from oocana import Context

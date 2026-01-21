@@ -1,34 +1,14 @@
 #region generated meta
 import typing
-
-
-class AnalysisParams(typing.TypedDict, total=False):
-    method: str
-    threshold: float
-    timeColumn: str
-    window: int
-    bins: int
-
-
 class Inputs(typing.TypedDict):
     data: list[dict]
     analysisType: typing.Literal["correlation", "distribution", "outliers", "trend", "summary"]
     columns: list[str] | None
-    params: AnalysisParams | None
-
-
-class VisualizationData(typing.TypedDict):
-    type: str
-    data: dict
-    config: dict
-
-
+    params: dict | None
 class Outputs(typing.TypedDict):
-    analysisType: str
-    result: dict
-    visualizationData: VisualizationData | None
-
-
+    analysisType: typing.NotRequired[str]
+    result: typing.NotRequired[dict]
+    visualizationData: typing.NotRequired[dict]
 #endregion
 
 from oocana import Context
