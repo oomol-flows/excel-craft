@@ -15,6 +15,9 @@ inputs_def:
         type: object
     nullable: false
 
+  - group: Join Options
+    collapsed: true
+
   - handle: joinType
     description: "%type-of-join-operation%"
     json_schema:
@@ -24,7 +27,8 @@ inputs_def:
         - left
         - right
         - outer
-    nullable: false
+    value: inner
+    nullable: true
 
   - handle: leftKey
     description: "%key-column-s-from-left-table-default-use-rightkey%"

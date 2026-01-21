@@ -110,7 +110,8 @@ inputs_def:
                 type: number
               max:
                 type: number
-    nullable: false
+    value: null
+    nullable: true
 
   - handle: sheet_name
     description: "%sheet-name-to-format-default-first-sheet%"

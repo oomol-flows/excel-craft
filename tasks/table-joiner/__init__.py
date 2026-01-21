@@ -3,7 +3,7 @@ import typing
 class Inputs(typing.TypedDict):
     leftData: list[dict]
     rightData: list[dict]
-    joinType: typing.Literal["inner", "left", "right", "outer"]
+    joinType: typing.Literal["inner", "left", "right", "outer"] | None
     leftKey: typing.Any
     rightKey: typing.Any
     suffixes: list[str] | None
@@ -31,7 +31,7 @@ async def main(params: Inputs, context: Context) -> Outputs:
     # Extract parameters
     left_data = params["leftData"]
     right_data = params["rightData"]
-    join_type = params["joinType"]
+    join_type = params.get("joinType") or "inner"
     left_key = params.get("leftKey")
     right_key = params.get("rightKey")
     suffixes = params.get("suffixes") or ["_x", "_y"]

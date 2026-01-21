@@ -26,6 +26,9 @@ inputs_def:
         excludeAll: true
     nullable: false
 
+  - group: Basic Options
+    collapsed: true
+
   - handle: format
     description: "%output-format-default-infer-from-file-extension%"
     json_schema:
@@ -37,33 +40,10 @@ inputs_def:
     value: null
     nullable: true
 
-  - handle: sheet_name
-    description: "%excel-sheet-name-default-sheet1%"
-    json_schema:
-      type: string
-      ui:group:
-        title: Excel Options
-        collapsed: true
-    value: null
-    nullable: true
-
   - handle: include_header
     description: "%include-column-headers-default-true%"
     json_schema:
       type: boolean
-      ui:group:
-        title: Output Options
-        collapsed: true
-    value: null
-    nullable: true
-
-  - handle: encoding
-    description: "%csv-encoding-default-utf-82%"
-    json_schema:
-      type: string
-      ui:group:
-        title: CSV/TSV Options
-        collapsed: true
     value: null
     nullable: true
 
@@ -71,9 +51,16 @@ inputs_def:
     description: "%append-to-existing-file-default-false%"
     json_schema:
       type: boolean
-      ui:group:
-        title: Output Options
-        collapsed: true
+    value: null
+    nullable: true
+
+  - group: Excel Options
+    collapsed: true
+
+  - handle: sheet_name
+    description: "%excel-sheet-name-default-sheet1%"
+    json_schema:
+      type: string
     value: null
     nullable: true
 
@@ -81,9 +68,6 @@ inputs_def:
     description: "%excel-formatting-options%"
     json_schema:
       type: object
-      ui:group:
-        title: Excel Formatting
-        collapsed: true
       properties:
         header_style:
           type: object
@@ -93,6 +77,16 @@ inputs_def:
           type: boolean
         freeze_pane:
           type: object
+    value: null
+    nullable: true
+
+  - group: CSV/TSV Options
+    collapsed: true
+
+  - handle: encoding
+    description: "%csv-encoding-default-utf-82%"
+    json_schema:
+      type: string
     value: null
     nullable: true
 

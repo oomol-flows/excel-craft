@@ -4,11 +4,11 @@ class Inputs(typing.TypedDict):
     data: list[dict]
     output_path: str
     format: typing.Literal["csv", "excel", "tsv"] | None
-    sheet_name: str | None
     include_header: bool | None
-    encoding: str | None
     append: bool | None
+    sheet_name: str | None
     formatting: dict | None
+    encoding: str | None
 class Outputs(typing.TypedDict):
     file_path: typing.NotRequired[str]
     rows_written: typing.NotRequired[int]

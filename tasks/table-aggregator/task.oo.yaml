@@ -16,6 +16,9 @@ inputs_def:
         - pivot
     nullable: false
 
+  - group: GroupBy Options
+    collapsed: true
+
   - handle: group_by
     description: "%columns-to-group-by-for-groupby-mode%"
     json_schema:
@@ -53,6 +56,9 @@ inputs_def:
             type: string
     value: null
     nullable: true
+
+  - group: Pivot Options
+    collapsed: true
 
   - handle: pivot
     description: "%pivot-table-configuration-for-pivot-mode%"

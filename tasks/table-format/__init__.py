@@ -2,7 +2,7 @@
 import typing
 class Inputs(typing.TypedDict):
     file_path: str
-    formatting: dict
+    formatting: dict | None
     sheet_name: str | None
 class Outputs(typing.TypedDict):
     file_path: typing.NotRequired[str]
@@ -24,7 +24,7 @@ async def main(params: Inputs, context: Context) -> Outputs:
 
     file_path = params["file_path"]
     sheet_name = params.get("sheet_name")
-    formatting = params["formatting"]
+    formatting = params.get("formatting") or {}
 
     if not os.path.exists(file_path):
         raise FileNotFoundError(f"File not found: {file_path}")

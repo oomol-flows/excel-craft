@@ -43,6 +43,9 @@ inputs_def:
     value: null
     nullable: true
 
+  - group: Column & Row Selection
+    collapsed: true
+
   - handle: columns
     description: "%select-specific-columns-empty-for-all%"
     json_schema:
@@ -67,6 +70,9 @@ inputs_def:
       minimum: 0
     value: null
     nullable: true
+
+  - group: Sorting Options
+    collapsed: true
 
   - handle: sort_by
     description: "%sort-rules%"
