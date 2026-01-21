@@ -1,214 +1,140 @@
-# DataCraft - Table Processing Blocks
+# DataCraft - Smart Table Processing Toolkit
 
-A comprehensive collection of OOMOL task blocks for processing Excel, CSV, and TSV table files.
+Work with your spreadsheets and data files more efficiently with this comprehensive collection of easy-to-use tools.
 
-## 📦 Blocks Overview
+## What is DataCraft?
 
-This package provides 7 core table processing blocks (P0 priority) that cover the complete data processing pipeline:
+DataCraft is a visual toolkit that helps you work with spreadsheet files (Excel, CSV, and TSV) without needing to write code or use complex software. Whether you're cleaning up messy data, analyzing sales reports, or preparing information for presentations, DataCraft provides simple building blocks that you can connect together to get the job done.
 
-### 1. **table-reader** - Table Reader
-- Read Excel (.xlsx, .xls), CSV, or TSV files
-- Auto-detect file format
-- Support multiple sheets (Excel)
-- Handle large files with row limits
-- Auto-detect encoding for CSV files
+Think of it like LEGO blocks for your data - each tool does one specific job really well, and you can combine them in different ways to accomplish exactly what you need.
 
-### 2. **table-inspector** - Table Inspector
-- View table structure and statistics
-- Check data types and missing values
-- Analyze data quality
-- Get column-level statistics
-- Preview sample data
+## Who is This For?
 
-### 3. **table-filter** - Table Filter
-- Filter rows with multiple operators (==, !=, >, <, contains, in, etc.)
-- Select specific columns
-- Sort data (ascending/descending)
-- Pagination support (limit/offset)
+- **Business professionals** who work with Excel files and want to automate repetitive tasks
+- **Data analysts** who need to clean and prepare data quickly
+- **Anyone** who wants to work with spreadsheets more efficiently without learning programming
 
-### 4. **table-cleaner** - Data Cleaner
-- Handle missing values (drop or fill)
-- Remove duplicate rows
-- Type conversion
-- Text normalization (trim, replace)
-- Numeric normalization (min-max, z-score)
+## What Can You Do With DataCraft?
 
-### 5. **table-transformer** - Data Transformer
-- Add computed columns
-- Rename/drop columns
-- Split columns (e.g., full name → first/last name)
-- Merge columns
-- Type casting
+### Read and Import Your Files
+Start by bringing in your data from Excel spreadsheets, CSV files, or tab-separated text files. The tool automatically detects what type of file you have and reads it correctly.
 
-### 6. **table-aggregator** - Data Aggregator
-- GROUP BY operations
-- Pivot tables
-- Multiple aggregation functions (sum, avg, count, min, max, etc.)
-- Multi-dimensional analysis
+### Understand Your Data
+Get a quick overview of what's in your spreadsheet - how many rows and columns, what type of information each column contains, and identify any missing or problematic data.
 
-### 7. **table-writer** - Table Writer
-- Export to Excel, CSV, or TSV
-- Excel formatting (header style, column widths, freeze panes)
-- Auto-filter support
-- Append mode
+### Clean Up Messy Data
+Fix common data problems like:
+- Remove empty rows or fill in missing values
+- Delete duplicate entries
+- Fix text formatting issues (extra spaces, inconsistent capitalization)
+- Convert data to the right format (dates, numbers, text)
 
-## 🚀 Quick Start
+### Filter and Sort
+Focus on exactly what you need by:
+- Showing only rows that meet certain criteria
+- Selecting specific columns to work with
+- Sorting information in ascending or descending order
+- Breaking large datasets into smaller, manageable chunks
 
-### Example Flow: Data Cleaning Pipeline
+### Transform and Enhance
+Create new information from your existing data:
+- Add new columns with calculated values
+- Split one column into multiple (like separating first and last names)
+- Combine columns together
+- Rename columns for clarity
 
-```yaml
-# 1. Read data
-reader →
-# 2. Inspect quality
-inspector →
-# 3. Clean (remove nulls, duplicates)
-cleaner →
-# 4. Transform (compute new columns)
-transformer →
-# 5. Filter (select specific data)
-filter →
-# 6. Export results
-writer
-```
+### Analyze and Summarize
+Get insights from your data:
+- Group information by categories (like sales by region or month)
+- Calculate totals, averages, counts, and other statistics
+- Create pivot tables to see patterns
+- Perform time-based analysis on date ranges
 
-## 🛠️ Dependencies
+### Validate Quality
+Make sure your data meets your requirements:
+- Check for required fields
+- Verify data is within expected ranges
+- Ensure formatting follows rules
+- Identify and flag problems
 
-The project uses Python >=3.11 with the following libraries:
+### Join Multiple Files
+Combine information from different spreadsheets:
+- Match rows from two files based on common columns
+- Merge related information side-by-side
+- Support for different types of joins (keep all rows, only matching rows, etc.)
 
-```
-pandas>=2.3.3        # Core data processing
-openpyxl>=3.1.5      # Excel reading/writing
-xlsxwriter>=3.2.9    # Advanced Excel formatting
-chardet>=5.2.0       # Encoding detection
-```
+### Sample and Split
+Work with portions of your data:
+- Take random samples for testing
+- Split data into training and testing sets
+- Extract representative subsets from large files
 
-## 📖 Usage Examples
+### Work With Time-Based Data
+Handle date and time information:
+- Convert between time zones
+- Extract specific parts (year, month, day)
+- Calculate differences between dates
+- Create time-based groupings
 
-### Example 1: Simple Data Cleanup
+### Apply Formulas
+Use familiar spreadsheet-like formulas to calculate new values without needing to understand programming.
 
-```yaml
-nodes:
-  - node_id: read#1
-    task: self::table-reader
-    inputs_from:
-      - handle: file_path
-        value: "/data/sales.xlsx"
+### Format Output
+Control exactly how your results look when exported back to Excel or CSV files.
 
-  - node_id: clean#1
-    task: self::table-cleaner
-    inputs_from:
-      - handle: data
-        from_node:
-          - node_id: read#1
-            output_handle: data
-      - handle: operations
-        value:
-          - type: "dropNull"
-          - type: "dropDuplicates"
+## How Does It Work?
 
-  - node_id: write#1
-    task: self::table-writer
-    inputs_from:
-      - handle: data
-        from_node:
-          - node_id: clean#1
-            output_handle: data
-      - handle: output_path
-        value: "/output/sales_clean.xlsx"
-```
+1. **Choose Your Starting Point**: Begin by reading your data file
+2. **Add Processing Steps**: Connect tools together in the order you want them to run
+3. **See Results Instantly**: Watch your data transform at each step with visual previews
+4. **Export When Ready**: Save your processed data in the format you need
 
-### Example 2: Sales Analysis
+Each step in your workflow is shown visually, making it easy to understand what's happening and make adjustments.
 
-```yaml
-# Read → Clean → Aggregate by Region → Export
-nodes:
-  - node_id: read#1
-    task: self::table-reader
-    inputs_from:
-      - handle: file_path
-        value: "/data/sales.csv"
+## Real-World Examples
 
-  - node_id: aggregate#1
-    task: self::table-aggregator
-    inputs_from:
-      - handle: data
-        from_node:
-          - node_id: read#1
-            output_handle: data
-      - handle: mode
-        value: "groupBy"
-      - handle: group_by
-        value: ["region"]
-      - handle: aggregations
-        value:
-          - column: "amount"
-            function: "sum"
-            alias: "total_sales"
-          - column: "customer_id"
-            function: "countUnique"
-            alias: "customer_count"
-```
+### Example 1: Clean Up a Customer List
+Start with a messy customer database → Remove duplicate entries → Fill in missing phone numbers → Fix text formatting → Sort by last name → Export to Excel
 
-## 🎯 Design Principles
+### Example 2: Analyze Sales Data
+Import sales report → Filter to show only last quarter → Group by sales region → Calculate total sales and customer counts for each region → Create summary report
 
-1. **Pipeline Architecture**: All blocks use standard `Array<Record<string, any>>` format for seamless chaining
-2. **Progressive Complexity**: From simple to advanced, suitable for different skill levels
-3. **Type Safety**: Complete input/output type definitions
-4. **Error Handling**: Clear error messages with validation
-5. **Performance**: Support for large files with streaming and optimization
+### Example 3: Prepare Data for Presentation
+Read multiple data files → Combine them together → Select only the columns you need → Sort by importance → Remove any incomplete records → Export as formatted Excel file
 
-## 📚 Documentation
+## Key Benefits
 
-For detailed specifications, see [TABLE_BLOCKS_DESIGN.md](./TABLE_BLOCKS_DESIGN.md)
+- **No Programming Required**: Visual tools that anyone can use
+- **Fast and Efficient**: Process thousands of rows in seconds
+- **Flexible**: Combine tools in any order to match your needs
+- **Reliable**: Built-in validation ensures data quality
+- **Visual Feedback**: See results at each step before proceeding
+- **Reusable**: Save your workflows and use them again with different files
 
-## 🔧 Development
+## Available Tools
 
-### Setup
+DataCraft includes 15 specialized tools:
 
-```bash
-# Install dependencies
-poetry install --no-root
-npm install
+1. **Table Reader** - Import your files
+2. **Table Inspector** - Understand your data structure
+3. **Table Filter** - Select specific rows and columns
+4. **Table Cleaner** - Fix data quality issues
+5. **Table Transformer** - Create and modify columns
+6. **Table Aggregator** - Summarize and analyze
+7. **Table Writer** - Export your results
+8. **Table Validator** - Check data quality
+9. **Table Joiner** - Combine multiple files
+10. **Table Analyzer** - Statistical analysis
+11. **Table Sampler** - Extract subsets
+12. **Table Splitter** - Divide datasets
+13. **Table Time Series** - Work with dates and times
+14. **Table Formula** - Apply calculations
+15. **Table Format** - Control output appearance
 
-# Or use bootstrap script
-poetry run oomol bootstrap
-```
+## Getting Started
 
-### Testing
-
-Create sample data and run the demo flow in `flows/flow-1/`.
-
-## 📊 Roadmap
-
-### ✅ P0 - Core Blocks (Completed)
-- table-reader
-- table-inspector
-- table-filter
-- table-cleaner
-- table-transformer
-- table-aggregator
-- table-writer
-
-### 🔜 P1 - Advanced Features (Planned)
-- table-joiner (multi-table joins)
-- table-validator (data validation)
-- table-analyzer (statistical analysis)
-- table-sampler (data sampling)
-- table-splitter (dataset splitting)
-
-### 🎯 P2 - Expert Features (Future)
-- table-time-series
-- table-formula
-- table-format
-
-## 📄 License
-
-MIT
-
-## 👥 Author
-
-**shaun** - beingswu@gmail.com
+Simply choose the tools you need, connect them in the order that makes sense for your task, and let DataCraft handle the heavy lifting. Each tool includes helpful descriptions and examples to guide you.
 
 ---
 
-Built with ❤️ for OOMOL
+*DataCraft makes working with spreadsheets simple, visual, and efficient.*
