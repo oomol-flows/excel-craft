@@ -1,5 +1,5 @@
 [project]
-name = "data-craft"
+name = "excel-craft"
 version = "0.1.0"
 description = ""
 authors = [
@@ -18,7 +18,7 @@ dependencies = [
 
 [tool.poetry]
 package-mode = false
-packages = [{include = "data_craft", from = "src"}]
+packages = [{include = "excel_craft", from = "src"}]
 
 
 [build-system]
