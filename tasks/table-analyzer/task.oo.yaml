@@ -1,29 +1,35 @@
 inputs_def:
   - handle: data
+    description: "%table-data-to-analyze%"
     json_schema:
       type: array
       items:
         type: object
-    description: "Table data to analyze"
     nullable: false
 
   - handle: analysisType
+    description: "%type-of-statistical-analysis-to-perform%"
     json_schema:
       type: string
-      enum: [correlation, distribution, outliers, trend, summary]
-    description: "Type of statistical analysis to perform"
+      enum:
+        - correlation
+        - distribution
+        - outliers
+        - trend
+        - summary
     nullable: false
 
   - handle: columns
+    description: "%columns-to-analyze-empty-for-all-numeric-columns%"
     json_schema:
       type: array
       items:
         type: string
-    description: "Columns to analyze (empty for all numeric columns)"
-    value: null
+    value:
     nullable: true
 
   - handle: params
+    description: "%analysis-specific-parameters%"
     json_schema:
       type: object
       properties:
@@ -37,23 +43,22 @@ inputs_def:
           type: integer
         bins:
           type: integer
-    description: "Analysis-specific parameters"
-    value: null
+    value:
     nullable: true
 
 outputs_def:
   - handle: analysisType
-    description: "Type of analysis performed"
+    description: "%type-of-analysis-performed%"
     json_schema:
       type: string
 
   - handle: result
-    description: "Analysis results (structure varies by type)"
+    description: "%analysis-results-structure-varies-by-type%"
     json_schema:
       type: object
 
   - handle: visualizationData
-    description: "Optional visualization data"
+    description: "%optional-visualization-data%"
     json_schema:
       type: object
       properties:
@@ -70,6 +75,6 @@ executor:
     entry: __init__.py
     spawn: false
 
-title: "Table Analyzer"
+title: "%table-analyzer%"
 icon: ":carbon:chart-line:"
-description: "Perform advanced statistical analysis including correlation, distribution, outliers detection, and trend analysis."
+description: "%perform-advanced-statistical-analysis-including-correlation-dist%"

@@ -1,5 +1,6 @@
 inputs_def:
   - handle: file_path
+    description: "%file-path-to-read-excel-csv-or-tsv%"
     json_schema:
       type: string
       ui:widget: file
@@ -15,10 +16,10 @@ inputs_def:
           - name: TSV Files
             extensions:
               - tsv
-    description: "File path to read (Excel, CSV, or TSV)"
     nullable: false
 
   - handle: format
+    description: "%file-format-default-auto-detect%"
     json_schema:
       type: string
       enum:
@@ -26,91 +27,90 @@ inputs_def:
         - csv
         - excel
         - tsv
-    description: "File format (default: auto-detect)"
-    nullable: true
     value: null
+    nullable: true
 
   - handle: sheet_name
+    description: "%excel-sheet-name-to-read-default-first-sheet%"
     json_schema:
       type: string
       ui:group:
-        title: "Excel Options"
+        title: Excel Options
         collapsed: true
-    description: "Excel sheet name to read (default: first sheet)"
-    nullable: true
     value: null
+    nullable: true
 
   - handle: sheet_index
+    description: "%excel-sheet-index-0-based-default-0%"
     json_schema:
       type: integer
       minimum: 0
       ui:group:
-        title: "Excel Options"
+        title: Excel Options
         collapsed: true
-    description: "Excel sheet index (0-based, default: 0)"
-    nullable: true
     value: null
+    nullable: true
 
   - handle: header_row
+    description: "%header-row-number-default-0%"
     json_schema:
       type: integer
       minimum: 0
       ui:group:
-        title: "Read Options"
+        title: Read Options
         collapsed: true
-    description: "Header row number (default: 0)"
-    nullable: true
     value: null
+    nullable: true
 
   - handle: encoding
+    description: "%csv-encoding-default-utf-8%"
     json_schema:
       type: string
       ui:group:
-        title: "CSV/TSV Options"
+        title: CSV/TSV Options
         collapsed: true
-    description: "CSV encoding (default: utf-8)"
-    nullable: true
     value: null
+    nullable: true
 
   - handle: skip_rows
+    description: "%number-of-rows-to-skip-from-the-beginning%"
     json_schema:
       type: integer
       minimum: 0
       ui:group:
-        title: "Read Options"
+        title: Read Options
         collapsed: true
-    description: "Number of rows to skip from the beginning"
-    nullable: true
     value: null
+    nullable: true
 
   - handle: max_rows
+    description: "%maximum-number-of-rows-to-read-for-large-files%"
     json_schema:
       type: integer
       minimum: 1
       ui:group:
-        title: "Read Options"
+        title: Read Options
         collapsed: true
-    description: "Maximum number of rows to read (for large files)"
-    nullable: true
     value: null
+    nullable: true
 
 outputs_def:
   - handle: data
-    description: "Table data as array of records"
+    description: "%table-data-as-array-of-records%"
     json_schema:
       type: array
       items:
         type: object
 
   - handle: columns
-    description: "Column names"
+    description: "%column-names%"
     json_schema:
       type: array
       items:
         type: string
 
   - handle: shape
-    description: "Table shape (rows and columns count)"
+    description: "%table-shape-rows-and-columns-count%"
     json_schema:
       type: object
       properties:
@@ -120,7 +120,7 @@ outputs_def:
           type: integer
 
   - handle: metadata
-    description: "File metadata"
+    description: "%file-metadata%"
     json_schema:
       type: object
 
@@ -130,7 +130,6 @@ executor:
     entry: __init__.py
     spawn: false
 
-title: "Table Reader"
+title: "%table-reader%"
 icon: ":carbon:document-import:"
-description: "Read Excel, CSV, or TSV files and return structured data. Supports
-  auto-detection, sheet selection, and large file handling."
+description: "%read-excel-csv-or-tsv-files-and-return-structured-data-supports%"

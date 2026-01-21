@@ -1,13 +1,14 @@
 inputs_def:
   - handle: data
+    description: "%table-data-to-filter%"
     json_schema:
       type: array
       items:
         type: object
-    description: "Table data to filter"
     nullable: false
 
   - handle: conditions
+    description: "%filter-conditions-and-logic%"
     json_schema:
       type: array
       items:
@@ -17,7 +18,21 @@ inputs_def:
             type: string
           operator:
             type: string
-            enum: ["==", "!=", ">", "<", ">=", "<=", "contains", "startsWith", "endsWith", "in", "notIn", "isNull", "notNull", "between"]
+            enum:
+              - ==
+              - "!="
+              - ">"
+              - <
+              - ">="
+              - <=
+              - contains
+              - startsWith
+              - endsWith
+              - in
+              - notIn
+              - isNull
+              - notNull
+              - between
           value:
             anyOf:
               - type: string
@@ -25,36 +40,36 @@ inputs_def:
               - type: boolean
               - type: array
               - type: "null"
-    description: "Filter conditions (AND logic)"
-    nullable: true
     value: null
+    nullable: true
 
   - handle: columns
+    description: "%select-specific-columns-empty-for-all%"
     json_schema:
       type: array
       items:
         type: string
-    description: "Select specific columns (empty for all)"
-    nullable: true
     value: null
+    nullable: true
 
   - handle: limit
+    description: "%limit-number-of-returned-rows%"
     json_schema:
       type: integer
       minimum: 1
-    description: "Limit number of returned rows"
-    nullable: true
     value: null
+    nullable: true
 
   - handle: offset
+    description: "%skip-first-n-rows%"
     json_schema:
       type: integer
       minimum: 0
-    description: "Skip first N rows"
-    nullable: true
     value: null
+    nullable: true
 
   - handle: sort_by
+    description: "%sort-rules%"
     json_schema:
       type: array
       items:
@@ -64,31 +79,32 @@ inputs_def:
             type: string
           order:
             type: string
-            enum: [asc, desc]
-    description: "Sort rules"
-    nullable: true
+            enum:
+              - asc
+              - desc
     value: null
+    nullable: true
 
 outputs_def:
   - handle: data
-    description: "Filtered table data"
+    description: "%filtered-table-data%"
     json_schema:
       type: array
       items:
         type: object
 
   - handle: filtered_count
-    description: "Number of rows after filtering"
+    description: "%number-of-rows-after-filtering%"
     json_schema:
       type: integer
 
   - handle: total_count
-    description: "Original number of rows"
+    description: "%original-number-of-rows%"
     json_schema:
       type: integer
 
   - handle: columns
-    description: "Output column names"
+    description: "%output-column-names%"
     json_schema:
       type: array
       items:
@@ -100,6 +116,6 @@ executor:
     entry: __init__.py
     spawn: false
 
-title: "Table Filter"
+title: "%table-filter%"
 icon: ":carbon:filter:"
-description: "Filter rows and columns based on conditions. Supports sorting, pagination, and multiple filter operators."
+description: "%filter-rows-and-columns-based-on-conditions-supports-sorting-pag%"

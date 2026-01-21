@@ -1,29 +1,32 @@
 inputs_def:
   - handle: data
+    description: "%table-data-to-aggregate%"
     json_schema:
       type: array
       items:
         type: object
-    description: "Table data to aggregate"
     nullable: false
 
   - handle: mode
+    description: "%aggregation-mode%"
     json_schema:
       type: string
-      enum: [groupBy, pivot]
-    description: "Aggregation mode"
+      enum:
+        - groupBy
+        - pivot
     nullable: false
 
   - handle: group_by
+    description: "%columns-to-group-by-for-groupby-mode%"
     json_schema:
       type: array
       items:
         type: string
-    description: "Columns to group by (for groupBy mode)"
-    nullable: true
     value: null
+    nullable: true
 
   - handle: aggregations
+    description: "%aggregation-functions-for-groupby-mode%"
     json_schema:
       type: array
       items:
@@ -33,14 +36,26 @@ inputs_def:
             type: string
           function:
             type: string
-            enum: [sum, avg, count, min, max, median, std, var, countUnique, first, last, list]
+            enum:
+              - sum
+              - avg
+              - count
+              - min
+              - max
+              - median
+              - std
+              - var
+              - countUnique
+              - first
+              - last
+              - list
           alias:
             type: string
-    description: "Aggregation functions (for groupBy mode)"
-    nullable: true
     value: null
+    nullable: true
 
   - handle: pivot
+    description: "%pivot-table-configuration-for-pivot-mode%"
     json_schema:
       type: object
       properties:
@@ -59,25 +74,24 @@ inputs_def:
             - type: number
             - type: string
             - type: "null"
-    description: "Pivot table configuration (for pivot mode)"
-    nullable: true
     value: null
+    nullable: true
 
 outputs_def:
   - handle: data
-    description: "Aggregated table data"
+    description: "%aggregated-table-data%"
     json_schema:
       type: array
       items:
         type: object
 
   - handle: mode
-    description: "Aggregation mode used"
+    description: "%aggregation-mode-used%"
     json_schema:
       type: string
 
   - handle: shape
-    description: "Result shape"
+    description: "%result-shape%"
     json_schema:
       type: object
       properties:
@@ -87,12 +101,12 @@ outputs_def:
           type: integer
 
   - handle: group_count
-    description: "Number of groups (groupBy mode only)"
+    description: "%number-of-groups-groupby-mode-only%"
     json_schema:
       type: integer
 
   - handle: pivot_columns
-    description: "Generated column names (pivot mode only)"
+    description: "%generated-column-names-pivot-mode-only%"
     json_schema:
       type: array
       items:
@@ -104,6 +118,6 @@ executor:
     entry: __init__.py
     spawn: false
 
-title: "Table Aggregator"
+title: "%table-aggregator%"
 icon: ":carbon:chart-bar:"
-description: "Aggregate table data with GROUP BY operations or pivot tables. Supports multiple aggregation functions."
+description: "%aggregate-table-data-with-group-by-operations-or-pivot-tables-su%"

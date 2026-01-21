@@ -1,13 +1,14 @@
 inputs_def:
   - handle: data
+    description: "%table-data-to-write%"
     json_schema:
       type: array
       items:
         type: object
-    description: "Table data to write"
     nullable: false
 
   - handle: output_path
+    description: "%output-file-path%"
     json_schema:
       type: string
       ui:widget: save
@@ -23,65 +24,65 @@ inputs_def:
             extensions:
               - tsv
         excludeAll: true
-    description: "Output file path"
     nullable: false
 
   - handle: format
+    description: "%output-format-default-infer-from-file-extension%"
     json_schema:
       type: string
       enum:
         - csv
         - excel
         - tsv
-    description: "Output format (default: infer from file extension)"
-    nullable: true
     value: null
+    nullable: true
 
   - handle: sheet_name
+    description: "%excel-sheet-name-default-sheet1%"
     json_schema:
       type: string
       ui:group:
-        title: "Excel Options"
+        title: Excel Options
         collapsed: true
-    description: "Excel sheet name (default: Sheet1)"
-    nullable: true
     value: null
+    nullable: true
 
   - handle: include_header
+    description: "%include-column-headers-default-true%"
     json_schema:
       type: boolean
       ui:group:
-        title: "Output Options"
+        title: Output Options
         collapsed: true
-    description: "Include column headers (default: true)"
-    nullable: true
     value: null
+    nullable: true
 
   - handle: encoding
+    description: "%csv-encoding-default-utf-82%"
     json_schema:
       type: string
       ui:group:
-        title: "CSV/TSV Options"
+        title: CSV/TSV Options
         collapsed: true
-    description: "CSV encoding (default: utf-8)"
-    nullable: true
     value: null
+    nullable: true
 
   - handle: append
+    description: "%append-to-existing-file-default-false%"
     json_schema:
       type: boolean
       ui:group:
-        title: "Output Options"
+        title: Output Options
         collapsed: true
-    description: "Append to existing file (default: false)"
-    nullable: true
     value: null
+    nullable: true
 
   - handle: formatting
+    description: "%excel-formatting-options%"
     json_schema:
       type: object
       ui:group:
-        title: "Excel Formatting"
+        title: Excel Formatting
         collapsed: true
       properties:
         header_style:
@@ -92,38 +93,37 @@ inputs_def:
           type: boolean
         freeze_pane:
           type: object
-    description: "Excel formatting options"
-    nullable: true
     value: null
+    nullable: true
 
 outputs_def:
   - handle: file_path
-    description: "Written file path"
+    description: "%written-file-path%"
     json_schema:
       type: string
 
   - handle: rows_written
-    description: "Number of rows written"
+    description: "%number-of-rows-written%"
     json_schema:
       type: integer
 
   - handle: columns_written
-    description: "Number of columns written"
+    description: "%number-of-columns-written%"
     json_schema:
       type: integer
 
   - handle: file_size
-    description: "File size in bytes"
+    description: "%file-size-in-bytes%"
     json_schema:
       type: integer
 
   - handle: success
-    description: "Whether write was successful"
+    description: "%whether-write-was-successful%"
     json_schema:
       type: boolean
 
   - handle: format
-    description: "Format used for writing"
+    description: "%format-used-for-writing%"
     json_schema:
       type: string
 
@@ -133,7 +133,6 @@ executor:
     entry: __init__.py
     spawn: false
 
-title: "Table Writer"
+title: "%table-writer%"
 icon: ":carbon:document-export:"
-description: "Write table data to Excel, CSV, or TSV files with optional
-  formatting and styling options."
+description: "%write-table-data-to-excel-csv-or-tsv-files-with-optional-formatt%"

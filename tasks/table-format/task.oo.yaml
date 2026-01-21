@@ -1,19 +1,20 @@
 inputs_def:
   - handle: file_path
+    description: "%path-to-the-excel-file-to-format%"
     json_schema:
       type: string
       ui:widget: file
-    description: "Path to the Excel file to format"
     nullable: false
 
   - handle: formatting
+    description: "%formatting-configuration%"
     json_schema:
       type: object
       properties:
         headerStyle:
           type: object
           ui:group:
-            title: "Header Style"
+            title: Header Style
             collapsed: true
           properties:
             bold:
@@ -41,7 +42,7 @@ inputs_def:
         columnWidths:
           type: object
           ui:group:
-            title: "Column & Row Dimensions"
+            title: Column & Row Dimensions
             collapsed: true
           additionalProperties:
             type: integer
@@ -54,7 +55,7 @@ inputs_def:
         conditionalFormats:
           type: array
           ui:group:
-            title: "Conditional Formatting"
+            title: Conditional Formatting
             collapsed: true
           items:
             type: object
@@ -79,7 +80,7 @@ inputs_def:
         freeze:
           type: object
           ui:group:
-            title: "Freeze Panes"
+            title: Freeze Panes
             collapsed: true
           properties:
             row:
@@ -89,7 +90,7 @@ inputs_def:
         dataValidation:
           type: array
           ui:group:
-            title: "Data Validation"
+            title: Data Validation
             collapsed: true
           items:
             type: object
@@ -109,33 +110,32 @@ inputs_def:
                 type: number
               max:
                 type: number
-    description: "Formatting configuration"
     nullable: false
 
   - handle: sheet_name
+    description: "%sheet-name-to-format-default-first-sheet%"
     json_schema:
       type: string
-    description: "Sheet name to format (default: first sheet)"
-    nullable: true
     value: null
+    nullable: true
 
 outputs_def:
   - handle: file_path
+    description: "%path-to-the-formatted-file%"
     json_schema:
       type: string
-    description: "Path to the formatted file"
 
   - handle: success
+    description: "%whether-formatting-was-successful%"
     json_schema:
       type: boolean
-    description: "Whether formatting was successful"
 
   - handle: applied_formats
+    description: "%list-of-applied-format-types%"
     json_schema:
       type: array
       items:
         type: string
-    description: "List of applied format types"
 
 executor:
   name: python
@@ -143,7 +143,6 @@ executor:
     entry: __init__.py
     spawn: false
 
-title: "Table Format Beautifier"
+title: "%table-format-beautifier%"
 icon: ":carbon:paint-brush:"
-description: "Apply Excel formatting including header styles, column widths,
-  conditional formats, freeze panes and data validation"
+description: "%apply-excel-formatting-including-header-styles-column-widths-con%"

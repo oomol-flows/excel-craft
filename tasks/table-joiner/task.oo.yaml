@@ -1,21 +1,22 @@
 inputs_def:
   - handle: leftData
+    description: "%left-table-data%"
     json_schema:
       type: array
       items:
         type: object
-    description: "Left table data"
     nullable: false
 
   - handle: rightData
+    description: "%right-table-data%"
     json_schema:
       type: array
       items:
         type: object
-    description: "Right table data"
     nullable: false
 
   - handle: joinType
+    description: "%type-of-join-operation%"
     json_schema:
       type: string
       enum:
@@ -23,81 +24,80 @@ inputs_def:
         - left
         - right
         - outer
-    description: "Type of join operation"
     nullable: false
 
   - handle: leftKey
+    description: "%key-column-s-from-left-table-default-use-rightkey%"
     json_schema:
       oneOf:
         - type: string
         - type: array
           items:
             type: string
-    description: "Key column(s) from left table (default: use rightKey)"
-    nullable: true
     value: null
+    nullable: true
 
   - handle: rightKey
+    description: "%key-column-s-from-right-table-default-use-leftkey%"
     json_schema:
       oneOf:
         - type: string
         - type: array
           items:
             type: string
-    description: "Key column(s) from right table (default: use leftKey)"
-    nullable: true
     value: null
+    nullable: true
 
   - handle: suffixes
+    description: "%suffixes-for-duplicate-columns-left_suffix-right_suffix%"
     json_schema:
       type: array
       items:
         type: string
       minItems: 2
       maxItems: 2
-    description: "Suffixes for duplicate columns [left_suffix, right_suffix]"
     value:
-      - "_x"
-      - "_y"
+      - _x
+      - _y
     nullable: true
 
   - handle: dropDuplicates
+    description: "%whether-to-drop-duplicate-rows-after-join%"
     json_schema:
       type: boolean
-    description: "Whether to drop duplicate rows after join"
     value: false
     nullable: true
 
 outputs_def:
   - handle: data
-    description: "Joined table data"
+    description: "%joined-table-data%"
     json_schema:
       type: array
       items:
         type: object
 
   - handle: matchedRows
-    description: "Number of successfully matched rows"
+    description: "%number-of-successfully-matched-rows%"
     json_schema:
       type: integer
 
   - handle: leftUnmatched
-    description: "Number of unmatched rows from left table"
+    description: "%number-of-unmatched-rows-from-left-table%"
     json_schema:
       type: integer
 
   - handle: rightUnmatched
-    description: "Number of unmatched rows from right table"
+    description: "%number-of-unmatched-rows-from-right-table%"
     json_schema:
       type: integer
 
   - handle: joinType
-    description: "Type of join performed"
+    description: "%type-of-join-performed%"
     json_schema:
       type: string
 
   - handle: keyColumns
-    description: "Key columns used for joining"
+    description: "%key-columns-used-for-joining%"
     json_schema:
       type: array
       items:
@@ -109,7 +109,6 @@ executor:
     entry: __init__.py
     spawn: false
 
-title: "Table Joiner"
+title: "%table-joiner%"
 icon: ":carbon:join-inner-alt:"
-description: "Join two tables based on key columns. Supports inner, left, right,
-  and outer joins similar to SQL."
+description: "%join-two-tables-based-on-key-columns-supports-inner-left-right-a%"

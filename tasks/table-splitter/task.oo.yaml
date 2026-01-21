@@ -1,13 +1,14 @@
 inputs_def:
   - handle: data
+    description: "%table-data-to-split%"
     json_schema:
       type: array
       items:
         type: object
-    description: "Table data to split"
     nullable: false
 
   - handle: method
+    description: "%splitting-method%"
     json_schema:
       type: string
       enum:
@@ -15,10 +16,10 @@ inputs_def:
         - condition
         - chunks
         - stratified
-    description: "Splitting method"
     nullable: false
 
   - handle: params
+    description: "%splitting-parameters-auto-configured-based-on-method%"
     json_schema:
       type: object
       properties:
@@ -42,13 +43,12 @@ inputs_def:
           type: integer
         stratifyColumn:
           type: string
-    description: "Splitting parameters (auto-configured based on method)"
-    nullable: true
     value: null
+    nullable: true
 
 outputs_def:
   - handle: splits
-    description: "Array of split datasets"
+    description: "%array-of-split-datasets%"
     json_schema:
       type: array
       items:
@@ -66,7 +66,7 @@ outputs_def:
             type: number
 
   - handle: method
-    description: "Splitting method used"
+    description: "%splitting-method-used%"
     json_schema:
       type: string
 
@@ -76,7 +76,6 @@ executor:
     entry: __init__.py
     spawn: false
 
-title: "Table Splitter"
+title: "%table-splitter%"
 icon: ":carbon:split:"
-description: "Split table data by ratio, conditions, chunks, or stratified
-  sampling. Useful for train/test splits."
+description: "%split-table-data-by-ratio-conditions-chunks-or-stratified-sampli%"

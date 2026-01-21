@@ -1,26 +1,32 @@
 inputs_def:
   - handle: data
+    description: "%table-data-to-sample-from%"
     json_schema:
       type: array
       items:
         type: object
-    description: "Table data to sample from"
     nullable: false
 
   - handle: method
+    description: "%sampling-method%"
     json_schema:
       type: string
-      enum: [random, stratified, systematic, head, tail]
-    description: "Sampling method"
+      enum:
+        - random
+        - stratified
+        - systematic
+        - head
+        - tail
     nullable: false
 
   - handle: size
+    description: "%sample-size-count-if-1-proportion-if-0-size-1%"
     json_schema:
       type: number
-    description: "Sample size (count if >= 1, proportion if 0 < size < 1)"
     nullable: false
 
   - handle: params
+    description: "%method-specific-parameters%"
     json_schema:
       type: object
       properties:
@@ -30,37 +36,36 @@ inputs_def:
           type: integer
         replacement:
           type: boolean
-    description: "Method-specific parameters"
-    value: null
+    value:
     nullable: true
 
 outputs_def:
   - handle: sample
-    description: "Sampled data"
+    description: "%sampled-data%"
     json_schema:
       type: array
       items:
         type: object
 
   - handle: indices
-    description: "Original data indices of sampled rows"
+    description: "%original-data-indices-of-sampled-rows%"
     json_schema:
       type: array
       items:
         type: integer
 
   - handle: sampleSize
-    description: "Actual number of rows in sample"
+    description: "%actual-number-of-rows-in-sample%"
     json_schema:
       type: integer
 
   - handle: originalSize
-    description: "Original data size"
+    description: "%original-data-size%"
     json_schema:
       type: integer
 
   - handle: method
-    description: "Sampling method used"
+    description: "%sampling-method-used%"
     json_schema:
       type: string
 
@@ -70,6 +75,6 @@ executor:
     entry: __init__.py
     spawn: false
 
-title: "Table Sampler"
+title: "%table-sampler%"
 icon: ":carbon:filter-edit:"
-description: "Sample data using various methods: random, stratified, systematic, head, or tail sampling."
+description: "%sample-data-using-various-methods-random-stratified-systematic-h%"

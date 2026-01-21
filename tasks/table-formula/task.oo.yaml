@@ -1,13 +1,14 @@
 inputs_def:
   - handle: data
+    description: "%input-table-data-as-array-of-records%"
     json_schema:
       type: array
       items:
         type: object
-    description: "Input table data as array of records"
     nullable: false
 
   - handle: formulas
+    description: "%list-of-formulas-to-apply%"
     json_schema:
       type: array
       items:
@@ -15,47 +16,47 @@ inputs_def:
         properties:
           column:
             type: string
-            description: "New column name"
+            description: New column name
           expression:
             type: string
-            description: "Formula expression"
+            description: Formula expression
           type:
             type: string
             enum:
               - formula
               - custom
-            description: "Formula type"
+            description: Formula type
         required:
           - column
           - expression
-    description: "List of formulas to apply"
     nullable: false
 
   - handle: functions
+    description: "%custom-function-definitions-name-code%"
     json_schema:
       type: object
       additionalProperties:
         type: string
-    description: "Custom function definitions (name: code)"
-    nullable: true
     value: null
+    nullable: true
 
 outputs_def:
   - handle: data
+    description: "%table-data-with-computed-columns%"
     json_schema:
       type: array
       items:
         type: object
-    description: "Table data with computed columns"
 
   - handle: new_columns
+    description: "%names-of-newly-created-columns%"
     json_schema:
       type: array
       items:
         type: string
-    description: "Names of newly created columns"
 
   - handle: errors
+    description: "%formula-evaluation-errors-if-any%"
     json_schema:
       type: array
       items:
@@ -67,7 +68,6 @@ outputs_def:
             type: string
           error:
             type: string
-    description: "Formula evaluation errors (if any)"
 
 executor:
   name: python
@@ -75,7 +75,6 @@ executor:
     entry: __init__.py
     spawn: false
 
-title: "Formula Calculator"
+title: "%formula-calculator%"
 icon: ":carbon:calculator:"
-description: "Apply Excel-like formulas to calculate new columns with support
-  for math, logic, text, date and lookup functions"
+description: "%apply-excel-like-formulas-to-calculate-new-columns-with-support%"

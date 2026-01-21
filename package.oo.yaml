@@ -4,3 +4,9 @@ scripts:
   bootstrap: |
     npm install
     poetry install --no-root
+name: excel-craft
+displayName: "%display-name%"
+description: "%description%"
+repository: https://github.com/oomol-flows/excel-craft.git
+releaseNotes: init
+icon: ./icon.png

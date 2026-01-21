@@ -1,13 +1,14 @@
 inputs_def:
   - handle: data
+    description: "%table-data-to-transform%"
     json_schema:
       type: array
       items:
         type: object
-    description: "Table data to transform"
     nullable: false
 
   - handle: operations
+    description: "%list-of-transformation-operations%"
     json_schema:
       type: array
       items:
@@ -25,38 +26,37 @@ inputs_def:
               - cast
           params:
             type: object
-    description: "List of transformation operations"
     nullable: false
 
 outputs_def:
   - handle: data
-    description: "Transformed table data"
+    description: "%transformed-table-data%"
     json_schema:
       type: array
       items:
         type: object
 
   - handle: new_columns
-    description: "Newly added column names"
+    description: "%newly-added-column-names%"
     json_schema:
       type: array
       items:
         type: string
 
   - handle: dropped_columns
-    description: "Dropped column names"
+    description: "%dropped-column-names%"
     json_schema:
       type: array
       items:
         type: string
 
   - handle: renamed_columns
-    description: "Renamed column mapping"
+    description: "%renamed-column-mapping%"
     json_schema:
       type: object
 
   - handle: report
-    description: "Operation reports"
+    description: "%operation-reports2%"
     json_schema:
       type: array
       items:
@@ -68,7 +68,6 @@ executor:
     entry: __init__.py
     spawn: false
 
-title: "Table Transformer"
+title: "%table-transformer%"
 icon: ":carbon:transform-binary:"
-description: "Transform table data with operations like adding computed columns,
-  renaming, splitting/merging columns, and type casting."
+description: "%transform-table-data-with-operations-like-adding-computed-column%"
