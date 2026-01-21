@@ -6,9 +6,9 @@ class Inputs(typing.TypedDict):
     sheet_name: str | None
     sheet_index: int | None
     header_row: int | None
-    encoding: str | None
     skip_rows: int | None
     max_rows: int | None
+    encoding: str | None
 class Outputs(typing.TypedDict):
     data: typing.NotRequired[list[dict]]
     columns: typing.NotRequired[list[str]]

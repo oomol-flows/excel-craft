@@ -25,7 +25,7 @@ inputs_def:
       type: array
       items:
         type: string
-    value: null
+    value:
     nullable: true
 
   - group: Advanced Options
@@ -46,7 +46,7 @@ inputs_def:
           type: integer
         bins:
           type: integer
-    value: null
+    value:
     nullable: true
 
 outputs_def:

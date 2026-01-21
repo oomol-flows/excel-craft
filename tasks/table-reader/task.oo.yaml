@@ -30,13 +30,13 @@ inputs_def:
     value: null
     nullable: true
 
+  - group: Excel Options
+    collapsed: true
+
   - handle: sheet_name
     description: "%excel-sheet-name-to-read-default-first-sheet%"
     json_schema:
       type: string
-      ui:group:
-        title: Excel Options
-        collapsed: true
     value: null
     nullable: true
 
@@ -45,30 +45,17 @@ inputs_def:
     json_schema:
       type: integer
       minimum: 0
-      ui:group:
-        title: Excel Options
-        collapsed: true
     value: null
     nullable: true
+
+  - group: Read Options
+    collapsed: true
 
   - handle: header_row
     description: "%header-row-number-default-0%"
     json_schema:
       type: integer
       minimum: 0
-      ui:group:
-        title: Read Options
-        collapsed: true
-    value: null
-    nullable: true
-
-  - handle: encoding
-    description: "%csv-encoding-default-utf-8%"
-    json_schema:
-      type: string
-      ui:group:
-        title: CSV/TSV Options
-        collapsed: true
     value: null
     nullable: true
 
@@ -77,9 +64,6 @@ inputs_def:
     json_schema:
       type: integer
       minimum: 0
-      ui:group:
-        title: Read Options
-        collapsed: true
     value: null
     nullable: true
 
@@ -88,9 +72,16 @@ inputs_def:
     json_schema:
       type: integer
       minimum: 1
-      ui:group:
-        title: Read Options
-        collapsed: true
+    value: null
+    nullable: true
+
+  - group: CSV/TSV Options
+    collapsed: true
+
+  - handle: encoding
+    description: "%csv-encoding-default-utf-8%"
+    json_schema:
+      type: string
     value: null
     nullable: true
 
