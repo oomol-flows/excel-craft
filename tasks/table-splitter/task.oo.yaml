@@ -10,7 +10,11 @@ inputs_def:
   - handle: method
     json_schema:
       type: string
-      enum: [ratio, condition, chunks, stratified]
+      enum:
+        - ratio
+        - condition
+        - chunks
+        - stratified
     description: "Splitting method"
     nullable: false
 
@@ -38,8 +42,9 @@ inputs_def:
           type: integer
         stratifyColumn:
           type: string
-    description: "Splitting parameters"
-    nullable: false
+    description: "Splitting parameters (auto-configured based on method)"
+    nullable: true
+    value: null
 
 outputs_def:
   - handle: splits
@@ -73,4 +78,5 @@ executor:
 
 title: "Table Splitter"
 icon: ":carbon:split:"
-description: "Split table data by ratio, conditions, chunks, or stratified sampling. Useful for train/test splits."
+description: "Split table data by ratio, conditions, chunks, or stratified
+  sampling. Useful for train/test splits."

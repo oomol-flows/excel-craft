@@ -18,7 +18,11 @@ inputs_def:
   - handle: joinType
     json_schema:
       type: string
-      enum: [inner, left, right, outer]
+      enum:
+        - inner
+        - left
+        - right
+        - outer
     description: "Type of join operation"
     nullable: false
 
@@ -29,8 +33,9 @@ inputs_def:
         - type: array
           items:
             type: string
-    description: "Key column(s) from left table"
-    nullable: false
+    description: "Key column(s) from left table (default: use rightKey)"
+    nullable: true
+    value: null
 
   - handle: rightKey
     json_schema:
@@ -39,8 +44,9 @@ inputs_def:
         - type: array
           items:
             type: string
-    description: "Key column(s) from right table"
-    nullable: false
+    description: "Key column(s) from right table (default: use leftKey)"
+    nullable: true
+    value: null
 
   - handle: suffixes
     json_schema:
@@ -50,7 +56,9 @@ inputs_def:
       minItems: 2
       maxItems: 2
     description: "Suffixes for duplicate columns [left_suffix, right_suffix]"
-    value: ["_x", "_y"]
+    value:
+      - "_x"
+      - "_y"
     nullable: true
 
   - handle: dropDuplicates
@@ -103,4 +111,5 @@ executor:
 
 title: "Table Joiner"
 icon: ":carbon:join:"
-description: "Join two tables based on key columns. Supports inner, left, right, and outer joins similar to SQL."
+description: "Join two tables based on key columns. Supports inner, left, right,
+  and outer joins similar to SQL."

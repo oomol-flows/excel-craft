@@ -1,40 +1,12 @@
 #region generated meta
 import typing
-
-
-class Condition(typing.TypedDict):
-    name: str
-    expression: str
-
-
-class SplitParams(typing.TypedDict, total=False):
-    ratios: list[float]
-    names: list[str]
-    shuffle: bool
-    seed: int
-    conditions: list[Condition]
-    chunkSize: int
-    stratifyColumn: str
-
-
-class SplitResult(typing.TypedDict):
-    name: str
-    data: list[dict]
-    size: int
-    percentage: float
-
-
 class Inputs(typing.TypedDict):
     data: list[dict]
     method: typing.Literal["ratio", "condition", "chunks", "stratified"]
-    params: SplitParams
-
-
+    params: dict | None
 class Outputs(typing.TypedDict):
-    splits: list[SplitResult]
-    method: str
-
-
+    splits: typing.NotRequired[list[dict]]
+    method: typing.NotRequired[str]
 #endregion
 
 from oocana import Context
@@ -56,7 +28,7 @@ async def main(params: Inputs, context: Context) -> Outputs:
     # Extract parameters
     data = params["data"]
     method = params["method"]
-    split_params = params["params"]
+    split_params = params.get("params") or {}
 
     if not data:
         raise ValueError("Data cannot be empty")

@@ -1,21 +1,19 @@
 #region generated meta
 import typing
-
 class Inputs(typing.TypedDict):
     file_path: str
-    format: typing.NotRequired[str]
-    sheet_name: typing.NotRequired[str]
-    sheet_index: typing.NotRequired[int]
-    header_row: typing.NotRequired[int]
-    encoding: typing.NotRequired[str]
-    skip_rows: typing.NotRequired[int]
-    max_rows: typing.NotRequired[int]
-
+    format: typing.Literal["auto", "csv", "excel", "tsv"] | None
+    sheet_name: str | None
+    sheet_index: int | None
+    header_row: int | None
+    encoding: str | None
+    skip_rows: int | None
+    max_rows: int | None
 class Outputs(typing.TypedDict):
-    data: list[dict[str, typing.Any]]
-    columns: list[str]
-    shape: dict[str, int]
-    metadata: dict[str, typing.Any]
+    data: typing.NotRequired[list[dict]]
+    columns: typing.NotRequired[list[str]]
+    shape: typing.NotRequired[dict]
+    metadata: typing.NotRequired[dict]
 #endregion
 
 from oocana import Context

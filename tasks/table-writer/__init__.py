@@ -1,38 +1,21 @@
 #region generated meta
 import typing
-
-class HeaderStyle(typing.TypedDict, total=False):
-    bold: bool
-    background_color: str
-    font_size: int
-
-class FreezePaneConfig(typing.TypedDict):
-    row: int
-    col: int
-
-class FormattingOptions(typing.TypedDict, total=False):
-    header_style: HeaderStyle
-    column_widths: dict[str, int]
-    auto_filter: bool
-    freeze_pane: FreezePaneConfig
-
 class Inputs(typing.TypedDict):
-    data: list[dict[str, typing.Any]]
+    data: list[dict]
     output_path: str
-    format: typing.NotRequired[str]
-    sheet_name: typing.NotRequired[str]
-    include_header: typing.NotRequired[bool]
-    encoding: typing.NotRequired[str]
-    append: typing.NotRequired[bool]
-    formatting: typing.NotRequired[FormattingOptions]
-
+    format: typing.Literal["csv", "excel", "tsv"] | None
+    sheet_name: str | None
+    include_header: bool | None
+    encoding: str | None
+    append: bool | None
+    formatting: dict | None
 class Outputs(typing.TypedDict):
-    file_path: str
-    rows_written: int
-    columns_written: int
-    file_size: int
-    success: bool
-    format: str
+    file_path: typing.NotRequired[str]
+    rows_written: typing.NotRequired[int]
+    columns_written: typing.NotRequired[int]
+    file_size: typing.NotRequired[int]
+    success: typing.NotRequired[bool]
+    format: typing.NotRequired[str]
 #endregion
 
 from oocana import Context

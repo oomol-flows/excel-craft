@@ -6,19 +6,15 @@ inputs_def:
     description: "Path to the Excel file to format"
     nullable: false
 
-  - handle: sheet_name
-    json_schema:
-      type: string
-    description: "Sheet name to format (default: first sheet)"
-    nullable: true
-    value: null
-
   - handle: formatting
     json_schema:
       type: object
       properties:
         headerStyle:
           type: object
+          ui:group:
+            title: "Header Style"
+            collapsed: true
           properties:
             bold:
               type: boolean
@@ -44,6 +40,9 @@ inputs_def:
                 - thick
         columnWidths:
           type: object
+          ui:group:
+            title: "Column & Row Dimensions"
+            collapsed: true
           additionalProperties:
             type: integer
         rowHeights:
@@ -54,6 +53,9 @@ inputs_def:
           type: boolean
         conditionalFormats:
           type: array
+          ui:group:
+            title: "Conditional Formatting"
+            collapsed: true
           items:
             type: object
             properties:
@@ -76,6 +78,9 @@ inputs_def:
                   type: string
         freeze:
           type: object
+          ui:group:
+            title: "Freeze Panes"
+            collapsed: true
           properties:
             row:
               type: integer
@@ -83,6 +88,9 @@ inputs_def:
               type: integer
         dataValidation:
           type: array
+          ui:group:
+            title: "Data Validation"
+            collapsed: true
           items:
             type: object
             properties:
@@ -103,6 +111,13 @@ inputs_def:
                 type: number
     description: "Formatting configuration"
     nullable: false
+
+  - handle: sheet_name
+    json_schema:
+      type: string
+    description: "Sheet name to format (default: first sheet)"
+    nullable: true
+    value: null
 
 outputs_def:
   - handle: file_path
@@ -130,4 +145,5 @@ executor:
 
 title: "Table Format Beautifier"
 icon: ":carbon:paint-brush:"
-description: "Apply Excel formatting including header styles, column widths, conditional formats, freeze panes and data validation"
+description: "Apply Excel formatting including header styles, column widths,
+  conditional formats, freeze panes and data validation"

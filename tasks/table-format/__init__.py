@@ -1,15 +1,13 @@
 #region generated meta
 import typing
-
 class Inputs(typing.TypedDict):
     file_path: str
-    sheet_name: typing.NotRequired[str | None]
-    formatting: dict[str, typing.Any]
-
+    formatting: dict
+    sheet_name: str | None
 class Outputs(typing.TypedDict):
-    file_path: str
-    success: bool
-    applied_formats: list[str]
+    file_path: typing.NotRequired[str]
+    success: typing.NotRequired[bool]
+    applied_formats: typing.NotRequired[list[str]]
 #endregion
 
 from oocana import Context

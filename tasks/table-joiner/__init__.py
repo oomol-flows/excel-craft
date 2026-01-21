@@ -1,26 +1,20 @@
 #region generated meta
 import typing
-
-
 class Inputs(typing.TypedDict):
     leftData: list[dict]
     rightData: list[dict]
     joinType: typing.Literal["inner", "left", "right", "outer"]
-    leftKey: str | list[str]
-    rightKey: str | list[str]
+    leftKey: typing.Any
+    rightKey: typing.Any
     suffixes: list[str] | None
     dropDuplicates: bool | None
-
-
 class Outputs(typing.TypedDict):
-    data: list[dict]
-    matchedRows: int
-    leftUnmatched: int
-    rightUnmatched: int
-    joinType: str
-    keyColumns: list[str]
-
-
+    data: typing.NotRequired[list[dict]]
+    matchedRows: typing.NotRequired[int]
+    leftUnmatched: typing.NotRequired[int]
+    rightUnmatched: typing.NotRequired[int]
+    joinType: typing.NotRequired[str]
+    keyColumns: typing.NotRequired[list[str]]
 #endregion
 
 from oocana import Context
@@ -38,8 +32,8 @@ async def main(params: Inputs, context: Context) -> Outputs:
     left_data = params["leftData"]
     right_data = params["rightData"]
     join_type = params["joinType"]
-    left_key = params["leftKey"]
-    right_key = params["rightKey"]
+    left_key = params.get("leftKey")
+    right_key = params.get("rightKey")
     suffixes = params.get("suffixes") or ["_x", "_y"]
     drop_duplicates = params.get("dropDuplicates", False)
 
@@ -52,6 +46,19 @@ async def main(params: Inputs, context: Context) -> Outputs:
     # Convert to DataFrames
     left_df = pd.DataFrame(left_data)
     right_df = pd.DataFrame(right_data)
+
+    # Auto-detect join keys if not specified
+    if left_key is None and right_key is None:
+        # Use common columns as keys
+        common_cols = list(set(left_df.columns) & set(right_df.columns))
+        if not common_cols:
+            raise ValueError("No common columns found between tables. Please specify leftKey or rightKey.")
+        left_key = common_cols
+        right_key = common_cols
+    elif left_key is None:
+        left_key = right_key
+    elif right_key is None:
+        right_key = left_key
 
     # Normalize keys to lists
     left_keys = [left_key] if isinstance(left_key, str) else left_key

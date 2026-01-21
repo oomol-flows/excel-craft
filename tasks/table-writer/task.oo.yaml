@@ -14,11 +14,14 @@ inputs_def:
       ui:options:
         filters:
           - name: Excel Files
-            extensions: [xlsx]
+            extensions:
+              - xlsx
           - name: CSV Files
-            extensions: [csv]
+            extensions:
+              - csv
           - name: TSV Files
-            extensions: [tsv]
+            extensions:
+              - tsv
         excludeAll: true
     description: "Output file path"
     nullable: false
@@ -26,7 +29,10 @@ inputs_def:
   - handle: format
     json_schema:
       type: string
-      enum: [csv, excel, tsv]
+      enum:
+        - csv
+        - excel
+        - tsv
     description: "Output format (default: infer from file extension)"
     nullable: true
     value: null
@@ -34,6 +40,9 @@ inputs_def:
   - handle: sheet_name
     json_schema:
       type: string
+      ui:group:
+        title: "Excel Options"
+        collapsed: true
     description: "Excel sheet name (default: Sheet1)"
     nullable: true
     value: null
@@ -41,6 +50,9 @@ inputs_def:
   - handle: include_header
     json_schema:
       type: boolean
+      ui:group:
+        title: "Output Options"
+        collapsed: true
     description: "Include column headers (default: true)"
     nullable: true
     value: null
@@ -48,6 +60,9 @@ inputs_def:
   - handle: encoding
     json_schema:
       type: string
+      ui:group:
+        title: "CSV/TSV Options"
+        collapsed: true
     description: "CSV encoding (default: utf-8)"
     nullable: true
     value: null
@@ -55,6 +70,9 @@ inputs_def:
   - handle: append
     json_schema:
       type: boolean
+      ui:group:
+        title: "Output Options"
+        collapsed: true
     description: "Append to existing file (default: false)"
     nullable: true
     value: null
@@ -62,6 +80,9 @@ inputs_def:
   - handle: formatting
     json_schema:
       type: object
+      ui:group:
+        title: "Excel Formatting"
+        collapsed: true
       properties:
         header_style:
           type: object
@@ -114,4 +135,5 @@ executor:
 
 title: "Table Writer"
 icon: ":carbon:document-export:"
-description: "Write table data to Excel, CSV, or TSV files with optional formatting and styling options."
+description: "Write table data to Excel, CSV, or TSV files with optional
+  formatting and styling options."
